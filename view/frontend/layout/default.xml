@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+        <referenceContainer name="head.additional">
+            <block name="partytown.module.init" 
+                   class="Perspective\Partytown\Block\Partytown" 
+                   template="Perspective_Partytown::js/partytown/jsConfig.phtml"
+            >
+                <block name="partytown.module.core" 
+                       as="js-core"
+                       template="Perspective_Partytown::js/partytown/core.phtml"
+                />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="perspective" translate="label" sortOrder="10">
+            <label>Perspective</label>
+        </tab>
+        <section id="partytown" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Partytown</label>
+            <tab>perspective</tab>
+            <resource>Perspective_Partytown::partytown_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Module Enable</label>
+                    <config_path>perspective/settings/status</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="debug_enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Debug mode</label>
+                    <config_path>perspective/settings/debug_status</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="forwarding_events" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Forwarding Events</label>
+                 <field id="custom_order_status" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>List of Events</label>
+                    <config_path>perspective/settings/forwarding_events_list</config_path>
+                    <source_model>Perspective\Partytown\Model\Config\Multiselect</source_model>
+                    <validate>validate-select</validate>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>Select desired events</comment>
+                </field>
+            </group>
+            <group id="proxying_requests" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Proxying Requests</label>
+                <field id="proxying_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Proxying Enable</label>
+                    <config_path>perspective/settings/proxying_requests_status</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="proxying_domains" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Proxying domains</label>
+                    <config_path>perspective/settings/proxying_requests_domains</config_path>
+                    <comment>Define the list of domains that will be proxied through the reverse proxy. You can define several domains by separating them with commas (,)</comment>
+                </field>
+                <field id="proxy_url" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Proxy URL</label>
+                    <config_path>perspective/settings/proxy_url</config_path>
+                    <comment>Enter proxy url</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
