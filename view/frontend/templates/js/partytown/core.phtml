@@ -2,6 +2,7 @@
 $libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
 $relativePath =  parse_url($libUrl, PHP_URL_PATH) . '/';
 ?>
+<?= $block->getChildHtml('js-config') ?>
 
 <script>
 /* Partytown 0.7.6 - MIT builder.io */

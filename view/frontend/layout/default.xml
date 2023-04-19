@@ -3,13 +3,15 @@
     <update handle="default_head_blocks"/>
     <body>
         <referenceContainer name="head.additional">
-            <block name="partytown.module.init" 
-                   class="Perspective\Partytown\Block\Partytown" 
-                   template="Perspective_Partytown::js/partytown/jsConfig.phtml"
-            >
-                <block name="partytown.module.core" 
+            
+            <block name="partytown.module.core" 
                        as="js-core"
                        template="Perspective_Partytown::js/partytown/core.phtml"
+            >
+                <block name="partytown.module.init" 
+                   class="Perspective\Partytown\Block\Partytown" 
+                   template="Perspective_Partytown::js/partytown/jsConfig.phtml"
+                   as="js-config"
                 />
             </block>
         </referenceContainer>
