@@ -19,7 +19,7 @@ class Partytown extends Template
     protected $helperData;
 
     /**
-     * LazyLoad constructor.
+     * Partytown constructor.
      *
      * @param Context $context
      * @param HelperData $helperData
