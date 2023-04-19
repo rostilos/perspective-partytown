@@ -9,46 +9,62 @@
             <label>Partytown</label>
             <tab>perspective</tab>
             <resource>Perspective_Partytown::partytown_config</resource>
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
-                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Module Enable</label>
                     <config_path>perspective/settings/status</config_path>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="debug_enable" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Debug mode</label>
-                    <config_path>perspective/settings/debug_status</config_path>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <field id="load_via_main_thread" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Load scripts on main thread</label>
+                    <config_path>perspective/settings/load_in_main_list</config_path>
+                    <comment>An array of strings used to filter out which script are executed via Partytown and the main thread. You can define multiple domains by separating them with commas (,).</comment>
                 </field>
             </group>
-            <group id="forwarding_events" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="forwarding_events" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Forwarding Events</label>
-                 <field id="custom_order_status" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                 <field id="forwarding_evenents_list" translate="label comment" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>List of Events</label>
                     <config_path>perspective/settings/forwarding_events_list</config_path>
                     <source_model>Perspective\Partytown\Model\Config\ForwardingMultiselect</source_model>
                     <validate>validate-select</validate>
                     <can_be_empty>1</can_be_empty>
-                    <comment>Select desired events</comment>
+                    <comment>A list of events representing function calls on the main thread to forward to the web worker</comment>
                 </field>
             </group>
-            <group id="proxying_requests" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="proxying_requests" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Proxying Requests</label>
-                <field id="proxying_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="proxying_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Proxying Enable</label>
                     <config_path>perspective/settings/proxying_requests_status</config_path>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="proxying_domains" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="proxying_domains" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Proxying domains</label>
                     <config_path>perspective/settings/proxying_requests_domains</config_path>
-                    <comment>Define the list of domains that will be proxied through the reverse proxy. You can define several domains by separating them with commas (,)</comment>
+                    <comment>Define a list of domains for which requests will be proxied through the reverse proxy. You can define multiple domains by separating them with commas (,).</comment>
                 </field>
-                <field id="proxy_url" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="proxy_url" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Proxy URL</label>
                     <config_path>perspective/settings/proxy_url</config_path>
                     <comment>Enter proxy url</comment>
+                </field>
+            </group>
+            <group id="debug_logging" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Debug Logging</label>
+                <field id="debug_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Debug mode</label>
+                    <config_path>perspective/settings/debug_status</config_path>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                 <field id="debug_logging_list" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Log configuration properties</label>
+                    <config_path>perspective/settings/debug_logging_list</config_path>
+                    <source_model>Perspective\Partytown\Model\Config\LogConfigMustiselect</source_model>
+                    <validate>validate-select</validate>
+                    <can_be_empty>1</can_be_empty>
+                    <comment>If you are using Chrome DevTools to see these logs, make sure that the Verbose log level is selected in Console</comment>
                 </field>
             </group>
         </section>

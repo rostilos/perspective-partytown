@@ -45,6 +45,21 @@ class Partytown extends Template
     /**
      * @return bool
      */
+    public function getLoadViaMainThreadList()
+    {
+        $result = [];
+        $sourceList = explode(',', $this->helperData->getLoadViaMainThreadList());
+        if (!empty(current($sourceList))) {
+            foreach ($sourceList as $source) {
+                $result[] = trim($source);
+            }
+        }
+        return json_encode($result);
+    }
+
+    /**
+     * @return bool
+     */
     public function isDebugEnabled()
     {
         return $this->helperData->isDebugEnabled();
@@ -96,4 +111,19 @@ class Partytown extends Template
     {
         return $this->helperData->getProxyUrl();
     }    
+
+    /**
+     * @return mixed
+     */
+    public function getDebugConfigsList()
+    {
+        $result = [];
+        $configs = explode(',', $this->helperData->getDebugConfigsList());
+        if (!empty(current($configs))) {
+            foreach ($configs as $config) {
+                $result[] = trim($config);
+            }
+        }
+        return json_encode($result);
+    }
 }

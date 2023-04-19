@@ -1,21 +1,35 @@
 <?php
+
+use Perspective\Partytown\Block\Partytown;
+
+/** @var Partytown $block */
+
 $isEnabled = $block->isEnabled(); 
 if (!$isEnabled) { 
 	return; 
 }
 
+// Configuration
 $forwardingEventsList = $block->getForwardingEventsList();
 $isProxyingRequestsEnabled = $block->isProxyingRequestsEnabled();
 $proxyRequestsDomains = $block->getProxyingRequestList(); 
 $proxyUrl =$block->getProxyUrl(); 
 $debugMode = $block->isDebugEnabled();
+$debugConfigs = $block->getDebugConfigsList();
+
+// Relative path to js lib files
 $libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
 $relativePath =  parse_url($libUrl, PHP_URL_PATH) . '/';
+echo $debugConfigs;
 ?>
 
 <script>
 	const forward = <?= $forwardingEventsList ?>;
+	
 	const debug = !!<?= $debugMode ?> || false;
+	const debugConfigArray = <?= $debugConfigs ?>;
+	const debugConfigObj = Array.isArray(debugConfigArray) ? debugConfigArray.reduce((a, v) => ({ ...a, [v]: v}), {}) : {};
+	const loadScriptsOnMainThread = <?= $block->getLoadViaMainThreadList() ?> || [];
     window.partytown = {
     	<?php if ($isProxyingRequestsEnabled && $proxyRequestsDomains): ?>
     		resolveUrl: function (url, location, type) {
@@ -28,9 +42,10 @@ $relativePath =  parse_url($libUrl, PHP_URL_PATH) . '/';
     		  return url;
     		},
     	<?php endif; ?>
+		loadScriptsOnMainThread,
     	forward,
     	debug,
 		lib: "<?= $relativePath ?>",
-		logCalls: debug,
+		...debugConfigObj
     }
 </script>

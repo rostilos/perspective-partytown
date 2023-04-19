@@ -2,7 +2,7 @@
  
 namespace Perspective\Partytown\Model\Config;
  
-class Multiselect implements \Magento\Framework\Option\ArrayInterface
+class ForwardingMultiselect implements \Magento\Framework\Option\ArrayInterface
 {
  
     public function toOptionArray()
