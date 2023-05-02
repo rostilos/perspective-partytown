@@ -1,12 +1,7 @@
 <?php
 
-use Perspective\Partytown\Block\Partytown;
-
-/** @var Partytown $block */
-$isEnabled = $block->isEnabled(); 
-if (!$isEnabled) { 
-	return; 
-}
+use Magento\Framework\View\Element\Template;
+/** @var Template $block */
 ?>
 
 <?= $block->getChildHtml('js-config') ?>

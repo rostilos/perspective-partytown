@@ -1,51 +1,44 @@
 <?php
 
-use Perspective\Partytown\Block\Partytown;
+use Perspective\Partytown\Block\Config;
 
-/** @var Partytown $block */
-
-$isEnabled = $block->isEnabled(); 
-if (!$isEnabled) { 
-	return; 
-}
+/** @var Config $block */
 
 // Configuration
-$forwardingEventsList = $block->getForwardingEventsList();
-$isProxyingRequestsEnabled = $block->isProxyingRequestsEnabled();
-$proxyRequestsDomains = $block->getProxyingRequestList(); 
-$proxyUrl =$block->getProxyUrl(); 
-$debugMode = $block->isDebugEnabled();
-$debugConfigs = $block->getDebugConfigsList();
-
-// Relative path to js lib files
-$libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
-$relativePath =  parse_url($libUrl, PHP_URL_PATH) . '/';
-echo $debugConfigs;
+$configJson = $block->getConfigJson();
 ?>
 
 <script>
-	const forward = <?= $forwardingEventsList ?>;
-	
-	const debug = !!<?= $debugMode ?> || false;
-	const debugConfigArray = <?= $debugConfigs ?>;
-	const debugConfigObj = Array.isArray(debugConfigArray) ? debugConfigArray.reduce((a, v) => ({ ...a, [v]: v}), {}) : {};
-	const loadScriptsOnMainThread = <?= $block->getLoadViaMainThreadList() ?> || [];
-    window.partytown = {
-    	<?php if ($isProxyingRequestsEnabled && $proxyRequestsDomains): ?>
-    		resolveUrl: function (url, location, type) {
-			  const proxyRequestsDomains = <?= $proxyRequestsDomains ?>;
-    		  if(proxyRequestsDomains.includes(url.hostname)){
-				let proxyUrl = new URL(`<?= (string) $proxyUrl ?>`);
-    		    proxyUrl.searchParams.append('url', url.href);
-    		    return proxyUrl;
-    		  }
-    		  return url;
-    		},
-    	<?php endif; ?>
-		loadScriptsOnMainThread,
-    	forward,
-    	debug,
-		lib: "<?= $relativePath ?>",
-		...debugConfigObj
-    }
+	const partytownConfig = <?= $configJson ?> || {};
+	const { 
+		debug, 
+		debugModes, 
+		forward, 
+		loadScriptsOnMainThread, 
+		isProxyingEnabled, 
+		proxyUrl, 
+		proxyingRequestDomains,
+		lib
+	} = partytownConfig;
+
+	const debugModesObj = Array.isArray(debugModes) ? debugModes.reduce((a, v) => ({ ...a, [v]: true }), {}) : {};
+
+	window.partytown = {
+		lib,
+	    loadScriptsOnMainThread,
+	    forward,
+	    debug,
+	    ...debugModesObj,
+	};
+
+	if (isProxyingEnabled) {
+	    window.partytown.resolveUrl = function (url, location, type) {
+	        if (proxyingRequestDomains.includes(url.hostname)) {
+	            let proxyUrl = new URL(proxyUrl);
+	            proxyUrl.searchParams.append("url", url.href);
+	            return proxyUrl;
+	        }
+	        return url;
+	    };
+	}
 </script>

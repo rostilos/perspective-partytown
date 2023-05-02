@@ -11,7 +11,7 @@ use Perspective\Partytown\Helper\Data as HelperData;
  *
  * @package Perspective\Partytown\Block
  */
-class Partytown extends Template
+class Config extends Template
 {
     /**
      * @var HelperData
@@ -43,7 +43,7 @@ class Partytown extends Template
     }
 
     /**
-     * @return bool
+     * @return mixed
      */
     public function getLoadViaMainThreadList()
     {
@@ -54,7 +54,7 @@ class Partytown extends Template
                 $result[] = trim($source);
             }
         }
-        return json_encode($result);
+        return $result;
     }
 
     /**
@@ -86,13 +86,13 @@ class Partytown extends Template
                 $result[] = trim($event);
             }
         }
-        return json_encode($result);
+        return $result;
     }
 
     /**
      * @return mixed
      */
-    public function getProxyingRequestList()
+    public function getProxyingRequestDomains()
     {
         $result = [];
         $domainsList = explode(',', $this->helperData->getProxyingRequestList());
@@ -124,6 +124,35 @@ class Partytown extends Template
                 $result[] = trim($config);
             }
         }
-        return json_encode($result);
+        return $result;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRelativePathToPartytownFolder()
+    {
+        $libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
+        $relativePath = parse_url($libUrl, PHP_URL_PATH) . '/';
+        return $relativePath;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfigJson()
+    {
+        $config = [];
+        $config = [
+            'forward' => $this->getForwardingEventsList(),
+            'debug' => $this->isDebugEnabled(),
+            'debugModes' => $this->getDebugConfigsList(),
+            'loadScriptsOnMainThread' => $this->getLoadViaMainThreadList(),
+            'isProxyingEnabled' => $this->isProxyingRequestsEnabled(),
+            'proxyUrl' => $this->getProxyUrl(),
+            'proxyingRequestDomains' => $this->getProxyingRequestDomains(),
+            'lib' => $this->getRelativePathToPartytownFolder()
+        ]; 
+        return json_encode($config);
     }
 }
