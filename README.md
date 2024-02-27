@@ -11,6 +11,6 @@ With this module you will be able to use the <a href="https://partytown.builder.
 <p>The <a href="https://partytown.builder.io/proxying-requests">official documentation</a> provides a list of possible reverse-proxy implementations.</p>
 <p>In my practice I have tried the approach using Cloudflare Workers</p>
 
-<p>Cloudflare Workers can be used as a reverse proxy for small projects ( with low traffic due to Cloudflare limitations ) proxied with Cloudflare </p>
+<p>Cloudflare Workers can be used as a reverse proxy ( more for testing purposes ) proxied with Cloudflare </p>
 
 ![cb2ad081-f2de-4200-8421-938213900f29](https://github.com/rostilos/perspective-partytown/assets/85498741/b661604c-392e-4e0e-a98b-54fb776c7e92)
