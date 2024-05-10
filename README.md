@@ -1,6 +1,22 @@
 <h1>Module for integrating  BuilderIO/partytown library functionality into Magento 2 project</h1>
 With this module you will be able to use the <a href="https://partytown.builder.io/">BuilderIO/partytown</a> in your Magento 2 project, which will allow you to optimize the frontend part of your project by separating the execution of analytics scripts into a separate thread of the webworker.
 
+<h2>Installing the module</h2>
+<p>
+  <b>Note : the environment must have node16+ version installed to correctly install the partytown library npm packages</b>
+</p>
+<ol>
+  <li>composer config repositories.perspective-magento2-rewiew git git@github.com:rostilos/perspective-partytown.git</li>
+  <li>composer require perspective/magento2-partytown dev-master</li>
+  <li>php bin/magento setup:upgrade</li>
+  <li>bin/magento setup:di:compile</li>  
+  <li>php bin/magento setup:static-content:deploy</li>
+  <li>Clear all Cache</li>
+</ol>
+
+<p>Configuration of the module is managed through the admin panel, where you can select the list of available analytics services that will be allocated for execution in the webworker, as well as specify other configurations that affect the functionality of the library
+</p>
+
 <h2>Configurations</h2>
 <p>Configuration of the module is managed through the admin panel, where you can select the list of available analytics services that will be allocated for execution in the webworker, as well as specify other configurations that affect the functionality of the library
 </p>
