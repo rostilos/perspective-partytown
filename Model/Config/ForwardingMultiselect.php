@@ -5,7 +5,7 @@ namespace Perspective\Partytown\Model\Config;
 class ForwardingMultiselect implements \Magento\Framework\Option\ArrayInterface
 {
  
-    public function toOptionArray()
+    public function toOptionArray(): array
     {
         return [
             ['value' => 'fbq', 'label' => __('Facebook Pixel')],

@@ -5,7 +5,7 @@ namespace Perspective\Partytown\Model\Config;
 class LogConfigMustiselect implements \Magento\Framework\Option\ArrayInterface
 {
  
-    public function toOptionArray()
+    public function toOptionArray(): array
     {
         return [
             ['value' => 'logCalls', 'label' => __('Log method calls')],

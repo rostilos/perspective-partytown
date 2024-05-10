@@ -4,7 +4,7 @@ namespace Perspective\Partytown\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
-use Perspective\Partytown\Helper\Data as HelperData;
+use Perspective\Partytown\Api\Config\ConfigProviderInterface;
 
 /**
  * Class Partytown
@@ -13,42 +13,38 @@ use Perspective\Partytown\Helper\Data as HelperData;
  */
 class Config extends Template
 {
-    /**
-     * @var HelperData
-     */
-    protected $helperData;
+    protected ConfigProviderInterface $configProvider;
 
     /**
-     * Partytown constructor.
      *
+     * @param ConfigProviderInterface $configProvider
      * @param Context $context
-     * @param HelperData $helperData
      * @param array $data
      */
     public function __construct(
+        ConfigProviderInterface $configProvider,
         Context $context,
-        HelperData $helperData,
         array $data = []
     ) {
-        $this->helperData = $helperData;
+        $this->configProvider = $configProvider;
         parent::__construct($context, $data);
     }
 
     /**
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
-        return $this->helperData->isModuleEnabled();
+        return $this->configProvider->isModuleEnabled();
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getLoadViaMainThreadList()
+    public function getLoadViaMainThreadList(): array
     {
         $result = [];
-        $sourceList = explode(',', $this->helperData->getLoadViaMainThreadList());
+        $sourceList = explode(',', (string)$this->configProvider->getLoadViaMainThreadList());
         if (!empty(current($sourceList))) {
             foreach ($sourceList as $source) {
                 $result[] = trim($source);
@@ -60,27 +56,27 @@ class Config extends Template
     /**
      * @return bool
      */
-    public function isDebugEnabled()
+    public function isDebugEnabled(): bool
     {
-        return $this->helperData->isDebugEnabled();
+        return $this->configProvider->isDebugEnabled();
     }
 
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function isProxyingRequestsEnabled()
+    public function isProxyingRequestsEnabled(): bool
     {
-        return $this->helperData->isProxyingRequestsEnabled();
+        return $this->configProvider->isProxyingRequestsEnabled();
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getForwardingEventsList()
+    public function getForwardingEventsList(): array
     {
         $result = [];
-        $eventsList = explode(',', $this->helperData->getForwardingEventsList());
+        $eventsList = explode(',', (string)$this->configProvider->getForwardingEventsList());
         if (!empty(current($eventsList))) {
             foreach ($eventsList as $event) {
                 $result[] = trim($event);
@@ -90,12 +86,12 @@ class Config extends Template
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getProxyingRequestDomains()
+    public function getProxyingRequestDomains(): string
     {
         $result = [];
-        $domainsList = explode(',', $this->helperData->getProxyingRequestList());
+        $domainsList = explode(',', (string)$this->configProvider->getProxyingRequestList());
         if (!empty(current($domainsList))) {
             foreach ($domainsList as $domain) {
                 $result[] = trim($domain);
@@ -105,20 +101,20 @@ class Config extends Template
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getProxyUrl()
+    public function getProxyUrl(): ?string
     {
-        return $this->helperData->getProxyUrl();
-    }    
+        return $this->configProvider->getProxyUrl();
+    }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getDebugConfigsList()
+    public function getDebugConfigsList(): array
     {
         $result = [];
-        $configs = explode(',', $this->helperData->getDebugConfigsList());
+        $configs = explode(',', (string)$this->configProvider->getDebugConfigsList());
         if (!empty(current($configs))) {
             foreach ($configs as $config) {
                 $result[] = trim($config);
@@ -130,7 +126,7 @@ class Config extends Template
     /**
      * @return string
      */
-    public function getRelativePathToPartytownFolder()
+    public function getRelativePathToPartytownFolder(): string
     {
         $libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
         $relativePath = parse_url($libUrl, PHP_URL_PATH) . '/';
@@ -138,9 +134,9 @@ class Config extends Template
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getConfigJson()
+    public function getConfigJson(): ?string
     {
         $config = [];
         $config = [
@@ -152,7 +148,7 @@ class Config extends Template
             'proxyUrl' => $this->getProxyUrl(),
             'proxyingRequestDomains' => $this->getProxyingRequestDomains(),
             'lib' => $this->getRelativePathToPartytownFolder()
-        ]; 
+        ];
         return json_encode($config);
     }
 }
