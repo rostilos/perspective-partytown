@@ -23,9 +23,10 @@ class Config extends Template
      */
     public function __construct(
         ConfigProviderInterface $configProvider,
-        Context $context,
-        array $data = []
-    ) {
+        Context                 $context,
+        array                   $data = []
+    )
+    {
         $this->configProvider = $configProvider;
         parent::__construct($context, $data);
     }

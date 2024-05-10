@@ -1,5 +1,5 @@
 {
-  "name": "partytown",
+  "name": "magento2-partytown",
   "version": "2.0.0",
   "description": "Compatibility module for partytown.io library in Magento 2",
   "scripts": {
