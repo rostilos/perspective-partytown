@@ -9,8 +9,7 @@
   ],
   "require": {
     "php": "~8.1.0||~8.2.0",
-    "magento/framework": "*",
-    "hyva-themes/module-magento2-admin": "^1.1"
+    "magento/framework": "*"
   },
   "post-update-cmd": [
     "php artisan clear-compiled",
