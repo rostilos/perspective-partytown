@@ -11,14 +11,16 @@
     "php": "~8.1.0||~8.2.0",
     "magento/framework": "*"
   },
-  "post-update-cmd": [
-    "npm install",
-    "npm run partytown"
-  ],
-  "post-install-cmd": [
-    "npm install",
-    "npm run partytown"
-  ],
+  "scripts": {
+    "post-update-cmd": [
+      "npm install",
+      "npm run partytown"
+    ],
+    "post-install-cmd": [
+      "npm install",
+      "npm run partytown"
+    ]
+  },
   "autoload": {
     "files": [
       "registration.php"
