@@ -17,7 +17,6 @@ ref. <a href="https://partytown.builder.io/proxying-requests">From Docs</a>
   <li>npm install ( node v16+ )</li>
   <li>node server.js</li>
   <li>Next, the nodejs server will start, the default url is http://127.0.0.1:3000.</li>
-  <li> ![2024-05-11_03-23](https://github.com/rostilos/perspective-partytown/assets/85498741/28f5e421-bed2-4630-a424-3222a93a5b40)</li>
 </ul>
 
 <p>Configuration via M2 admin panel</p>
@@ -28,4 +27,5 @@ ref. <a href="https://partytown.builder.io/proxying-requests">From Docs</a>
 <p>
   Configuration Example:
 </p>
-![2024-05-11_03-20](https://github.com/rostilos/perspective-partytown/assets/85498741/0b41a460-b975-4bec-8029-5d78092150f4)
+
+![2024-05-11_03-20](https://github.com/rostilos/perspective-partytown/assets/85498741/377df98b-e626-4f0f-ad53-5c3dc047ad26)
