@@ -29,3 +29,6 @@ ref. <a href="https://partytown.builder.io/proxying-requests">From Docs</a>
 </p>
 
 ![2024-05-11_03-20](https://github.com/rostilos/perspective-partytown/assets/85498741/377df98b-e626-4f0f-ad53-5c3dc047ad26)
+![2024-05-11_03-49](https://github.com/rostilos/perspective-partytown/assets/85498741/c053f9ff-4ac7-47d4-b780-4d19bfd18c92)
+
+
