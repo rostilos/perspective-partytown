@@ -1,0 +1,17 @@
+{
+  "name": "magento2-partytown",
+  "version": "2.0.0",
+  "description": "Compatibility module for partytown.io library in Magento 2",
+  "scripts": {
+    "build": "npm run partytown && next build",
+    "partytown": "partytown copylib view/frontend/web/js/lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rostilos/perspective-partytown.git"
+  },
+  "private": true,
+  "dependencies": {
+    "@builder.io/partytown": "^0.10.2"
+  }
+}
