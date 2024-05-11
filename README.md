@@ -5,7 +5,7 @@ With this module you will be able to use the <a href="https://partytown.builder.
 
 <ol>
   <li>PHP 8.1 or higher</li>
-  <li>Magento 2.4.6 or higher</li>
+  <li>Magento 2.4.4 or higher</li>
   <li>Node.js v16 or higher</li>
   <li>Optional : configured reverse proxy for correct loading of some scripts ( see below )</li>
 </ol>
