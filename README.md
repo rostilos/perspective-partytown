@@ -4,7 +4,7 @@ With this module you will be able to use the <a href="https://partytown.builder.
 <h2>Installing the module</h2>
 
 <ol>
-  <li>composer config repositories.perspective-magento2-rewiew git git@github.com:rostilos/perspective-partytown.git</li>
+  <li>composer config repositories.perspective-magento2-partytown git git@github.com:rostilos/perspective-partytown.git</li>
   <li>composer require perspective/magento2-partytown dev-master</li>
   <li>php bin/magento setup:upgrade</li>
   <li>bin/magento setup:di:compile</li>  
