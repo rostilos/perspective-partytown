@@ -30,8 +30,7 @@ With this module you will be able to use the <a href="https://partytown.builder.
 </ol>
 
 
-<p>Configuration of the module is managed through the admin panel, where you can select the list of available analytics services that will be allocated for execution in the webworker, as well as specify other configurations that affect the functionality of the library
-</p>
+<p>In case you need the latest version of partytown lib npm packages</p>
 
 <h2>Configurations</h2>
 <p>Configuration of the module is managed through the admin panel, where you can select the list of available analytics services that will be allocated for execution in the webworker, as well as specify other configurations that affect the functionality of the library
