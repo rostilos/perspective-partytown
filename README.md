@@ -1,6 +1,16 @@
 <h1>Module for integrating  BuilderIO/partytown library functionality into Magento 2 project</h1>
 With this module you will be able to use the <a href="https://partytown.builder.io/">BuilderIO/partytown</a> in your Magento 2 project, which will allow you to optimize the frontend part of your project by separating the execution of analytics scripts into a separate thread of the webworker.
 
+<h2>Requirements: </h2>
+
+<ol>
+  <li>PHP 8.1 or higher</li>
+  <li>Magento 2.4.6 or higher</li>
+  <li>Node.js v16 or higher</li>
+  <li>Optional : configured reverse proxy for correct loading of some scripts ( see below )</li>
+</ol>
+
+
 <h2>Installing the module</h2>
 
 <ol>
