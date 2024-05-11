@@ -30,6 +30,9 @@ With this module you will be able to use the <a href="https://partytown.builder.
 ![5e55bf15-1b51-4003-b123-83f7ec7f4cfe](https://github.com/rostilos/perspective-partytown/assets/85498741/c18cc971-2ff3-4457-a6d2-7830d09cb57d)
 
 <h2>For correct work it is recommended to specify url to reverse proxy</h2>
+
+<a href="https://github.com/rostilos/perspective-partytown/blob/2.0.0-alpha/docs/reverse-proxy.md">Example of a self-hosted implementation using nodejs </a>
+
 <p>The <a href="https://partytown.builder.io/proxying-requests">official documentation</a> provides a list of possible reverse-proxy implementations.</p>
 <p>In my practice I have tried the approach using Cloudflare Workers</p>
 
