@@ -7,6 +7,7 @@ With this module you will be able to use the <a href="https://partytown.builder.
   <li>PHP 8.1 or higher</li>
   <li>Magento 2.4.4 or higher</li>
   <li>Node.js v16 or higher</li>
+  <li>configured https for the domain ( for correct work of service wokers )</li>
   <li>Optional : configured reverse proxy for correct loading of some scripts ( see below )</li>
 </ol>
 
@@ -33,6 +34,19 @@ With this module you will be able to use the <a href="https://partytown.builder.
 <p>In case you need the latest version of partytown lib npm packages</p>
 
 <h2>Configurations</h2>
+<p>In order for scripts to be loaded and executed in a separate thread of the webworker - you need to set the appropriate type ( text/partytown ) when connecting them. Using the example of GMT : </p>
+
+````
+<!-- Google Tag Manager -->
+<script type="text/partytown">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXXX');</script>
+<!-- End Google Tag Manager -->
+````
+
+
 <p>Configuration of the module is managed through the admin panel, where you can select the list of available analytics services that will be allocated for execution in the webworker, as well as specify other configurations that affect the functionality of the library
 </p>
 
