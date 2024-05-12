@@ -2,7 +2,7 @@
   "name": "perspective/magento2-partytown",
   "description": "Module for integrating BuilderIO/partytown library functionality into Magento 2 project",
   "type": "magento2-module",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "license": [
     "OSL-3.0",
     "AFL-3.0"
