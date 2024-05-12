@@ -1,12 +1,12 @@
 <?php
- 
+
 namespace Perspective\Partytown\Model\Adminhtml\System\Config;
- 
+
 use function Perspective\Partytown\Model\Adminhtml\System\Config;
 
 class ForwardingMultiselect implements \Magento\Framework\Option\ArrayInterface
 {
- 
+
     public function toOptionArray(): array
     {
         return [
@@ -15,7 +15,7 @@ class ForwardingMultiselect implements \Magento\Framework\Option\ArrayInterface
             ['value' => '_hsq.push', 'label' => __('Hubspot Tracking')],
             ['value' => 'Intercom', 'label' => __('Intercom')],
             ['value' => '_learnq.push', 'label' => __('Klaviyo')],
-            ['value' => 'ttq.track, ttq.page, ttq.load', 'label' => __('TikTok Pixel')],
+            ['value' => 'ttq', 'label' => __('TikTok Pixel')],
             ['value' => 'mixpanel.track', 'label' => __('Mixpanel')]
         ];
     }
