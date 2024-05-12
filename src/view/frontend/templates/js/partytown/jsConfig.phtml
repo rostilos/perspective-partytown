@@ -1,44 +1,46 @@
 <?php
 
 use Perspective\Partytown\Block\Config;
+use Magento\Framework\Escaper;
 
 /** @var Config $block */
+/** @var Escaper $escaper */
 
 // Configuration
 $configJson = $block->getConfigJson();
 ?>
 
 <script>
-	const partytownConfig = <?= $configJson ?> || {};
-	const { 
-		debug, 
-		debugModes, 
-		forward, 
-		loadScriptsOnMainThread, 
-		isProxyingEnabled, 
-		proxyUrl, 
-		proxyingRequestDomains,
-		lib
-	} = partytownConfig;
+    const partytownConfig = <?= $configJson ?> || {};
+    const {
+        debug,
+        debugModes,
+        forward,
+        loadScriptsOnMainThread,
+        isProxyingEnabled,
+        lib
+    } = partytownConfig;
 
-	const debugModesObj = Array.isArray(debugModes) ? debugModes.reduce((a, v) => ({ ...a, [v]: true }), {}) : {};
+    const debugModesObj = Array.isArray(debugModes) ? debugModes.reduce((a, v) => ({ ...a, [v]: true }), {}) : {};
 
-	window.partytown = {
-		lib,
-	    loadScriptsOnMainThread,
-	    forward,
-	    debug,
-	    ...debugModesObj,
-	};
+    window.partytown = {
+        lib,
+        loadScriptsOnMainThread,
+        forward,
+        debug,
+        ...debugModesObj,
+    };
 
-	if (isProxyingEnabled) {
-	    window.partytown.resolveUrl = function (url, location, type) {
-	        if (proxyingRequestDomains.includes(url.hostname)) {
-	            let proxyUrl = new URL(proxyUrl);
-	            proxyUrl.searchParams.append("url", url.href);
-	            return proxyUrl;
-	        }
-	        return url;
-	    };
-	}
+    if (isProxyingEnabled) {
+        window.partytown.resolveUrl = function (url, location, type) {
+            const proxyingRequestDomains = <?= (string)$block->getProxyingRequestDomains() ?> || [];
+            let proxyUrl = "<?= (string) $block->getProxyUrl() ?>";
+            if (proxyingRequestDomains.includes(url.hostname)) {
+                proxyUrl = new URL(proxyUrl);
+                proxyUrl.searchParams.append("url", url.href);
+                return proxyUrl;
+            }
+            return url;
+        };
+    }
 </script>
