@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    reverse-proxy:
+      image: openresty/openresty:1.21.4.1-0-focal
+      volumes:
+        - ./.warden/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        - ./.warden/certs/localhost.pem:/etc/nginx/certs/server.crt
+        - ./.warden/certs/localhost-key.pem:/etc/nginx/certs/server.key
+      ports:
+        - 8080:80
+        - 444:443
