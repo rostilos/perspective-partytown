@@ -8,7 +8,7 @@ Many third-party scripts already provide the correct CORS headers, but not all d
 
 ref. <a href="https://partytown.builder.io/proxying-requests">From Docs</a>
 
-<h3>Example of a self-hosted reverse proxy on nginx to proxy such requests and add headers necessary for analytics ( or other functionality ) to work</h3>
+<h3>Example of a self-hosted reverse proxy on node.js to proxy such requests and add headers necessary for analytics ( or other functionality ) to work</h3>
 <p><strong>Important : this should only be used for testing purposes and a tool for local testing, not a production solution.</strong></p>
 
 <p>Starting nodejs reverse-proxy server</p>
