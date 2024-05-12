@@ -30,4 +30,7 @@ ref. <a href="https://partytown.builder.io/proxying-requests">From Docs</a>
   Configuration Example:
 </p>
 
+![2024-05-12_23-20](https://github.com/rostilos/perspective-partytown/assets/85498741/d4b87083-380a-49d8-b29d-63589ba70cd9)
+
+![2024-05-12_23-22](https://github.com/rostilos/perspective-partytown/assets/85498741/3cca363d-3ed0-4116-a6e0-f77c1a8154f0)
 
