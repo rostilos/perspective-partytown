@@ -32,14 +32,16 @@ Traditional connection / with Partytown module:
 </ol>
 
 <h2>Updating partytown npm packages </h2>
+<p>The library files provided by the npm package @builder.io/partytown are already added to the module files, but in case you want to update them, it is recommended to do the following :</p>
+
 <ol>
   <li>cd _magento-root_/vendor/perspective/magento2-partytown</li>
   <li>npm install ( node v16+ required )</li>
   <li>npm run partytown</li>
 </ol>
 
+<p>Note that if you update the composer package, or reinstall it, you will revert to the existing version in the repository. This is planned to be fixed in future updates</p>
 
-<p>In case you need the latest version of partytown lib npm packages</p>
 
 <h2>Configurations</h2>
 <p>In order for scripts to be loaded and executed in a separate thread of the webworker - you need to set the appropriate type ( text/partytown ) when connecting them. Using the example of GMT : </p>
