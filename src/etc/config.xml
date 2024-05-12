@@ -18,8 +18,8 @@
                     <media-debug>Perspective_Partytown/js/lib/debug/partytown-media.js</media-debug>
                     <sw-sandbox-debug>Perspective_Partytown/js/lib/debug/partytown-sandbox-sw.js</sw-sandbox-debug>
                     <sw-debug>Perspective_Partytown/js/lib/debug/partytown-sw.js</sw-debug>
-                    <ww-atomics>Perspective_Partytown/js/lib/debug/partytown-ww-atomics</ww-atomics>
-                    <ww-sw>Perspective_Partytown/js/lib/debug/partytown-ww-sw</ww-sw>
+                    <ww-atomics>Perspective_Partytown/js/lib/debug/partytown-ww-atomics.js</ww-atomics>
+                    <ww-sw>Perspective_Partytown/js/lib/debug/partytown-ww-sw.js</ww-sw>
                     <partytown-debug>Perspective_Partytown/js/lib/debug/partytown.js</partytown-debug>
                 </minify_exclude>
             </js>
