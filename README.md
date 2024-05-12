@@ -1,5 +1,13 @@
 <h1>Module for integrating  BuilderIO/partytown library functionality into Magento 2 project</h1>
-With this module you will be able to use the <a href="https://partytown.builder.io/">BuilderIO/partytown</a> in your Magento 2 project, which will allow you to optimize the frontend part of your project by separating the execution of analytics scripts into a separate thread of the webworker.
+<p>With this module you will be able to use the <a href="https://partytown.builder.io/">BuilderIO/partytown</a> in your Magento 2 project, which will allow you to optimize the frontend part of your project by separating the execution of analytics scripts into a separate thread of the webworker.</p>
+
+<p>A small example of how this can affect TBT ( and not only ) metrics when validated with Lighthouse Api 
+
+Traditional connection / with Partytown module:
+</p>
+
+![diff](https://github.com/rostilos/perspective-partytown/assets/85498741/cae5b261-8992-4ef9-9761-61a149b1c5fb)
+
 
 <h2>Requirements: </h2>
 
