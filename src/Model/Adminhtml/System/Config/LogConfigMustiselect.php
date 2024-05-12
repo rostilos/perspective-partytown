@@ -1,7 +1,9 @@
 <?php
  
-namespace Perspective\Partytown\Model\Config;
- 
+namespace Perspective\Partytown\Model\Adminhtml\System\Config;
+
+use function Perspective\Partytown\Model\Adminhtml\System\Config;
+
 class LogConfigMustiselect implements \Magento\Framework\Option\ArrayInterface
 {
  
