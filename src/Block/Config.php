@@ -80,6 +80,12 @@ class Config extends Template
         $eventsList = explode(',', (string)$this->configProvider->getForwardingEventsList());
         if (!empty(current($eventsList))) {
             foreach ($eventsList as $event) {
+                // TODO: Refactor this
+                // hardcoded value for TikTox pixel forward events
+                if($event === 'ttq'){
+                    $result[] = 'ttq.track, ttq.page, ttq.load';
+                    continue;
+                }
                 $result[] = trim($event);
             }
         }
