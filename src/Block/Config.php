@@ -146,8 +146,6 @@ class Config extends Template
             'debugModes' => $this->getDebugConfigsList(),
             'loadScriptsOnMainThread' => $this->getLoadViaMainThreadList(),
             'isProxyingEnabled' => $this->isProxyingRequestsEnabled(),
-            'proxyUrl' => $this->getProxyUrl(),
-            'proxyingRequestDomains' => $this->getProxyingRequestDomains(),
             'lib' => $this->getRelativePathToPartytownFolder()
         ];
         return json_encode($config);
