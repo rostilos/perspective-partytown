@@ -32,10 +32,14 @@ class PartytownConfig implements ArgumentInterface
     }
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getLoadViaMainThreadList(): array
+    public function getLoadViaMainThreadList(): ?array
     {
+        $result = $this->configProvider->getLoadViaMainThreadList();
+        if(empty($result)){
+            return null;
+        }
         return array_map('trim', explode(',', $this->configProvider->getLoadViaMainThreadList()));
     }
 
@@ -113,10 +117,13 @@ class PartytownConfig implements ArgumentInterface
             'forward' => $this->getForwardingEventsList(),
             'debug' => $this->isDebugEnabled(),
             'debugModes' => $this->getDebugConfigsList(),
-            'loadScriptsOnMainThread' => $this->getLoadViaMainThreadList(),
             'isProxyingEnabled' => $this->isProxyingRequestsEnabled(),
             'lib' => $this->getRelativePathToPartytownFolder()
         ];
+        $loadScriptsOnMainThread = $this->getLoadViaMainThreadList();
+        if($loadScriptsOnMainThread){
+            $config['loadScriptsOnMainThread'] = $loadScriptsOnMainThread;
+        }
         return json_encode($config);
     }
 }

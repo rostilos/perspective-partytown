@@ -16,7 +16,7 @@ ref. <a href="https://partytown.builder.io/proxying-requests">From Docs</a>
   <li>cd samples/nodejs-reverse-proxy</li>
   <li>npm install ( node v16+ )</li>
   <li>node server.js</li>
-  <li>Next, the nodejs server will start, the default url is http://127.0.0.1:3000.</li>
+  <li>Next, the nodejs server will start, the default url is http://127.0.0.1:3000/proxy.</li>
 </ul>
 
 <p>Configuration via M2 admin panel</p>

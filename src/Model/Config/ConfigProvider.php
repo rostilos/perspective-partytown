@@ -21,9 +21,9 @@ class ConfigProvider implements ConfigProviderInterface
         return (bool)$this->scopeConfig->getValue(self::PARTYTOWN_IS_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getLoadViaMainThreadList(): string
+    public function getLoadViaMainThreadList(): ?string
     {
-        return (string)$this->scopeConfig->getValue(self::LOAD_IN_MAIN_THREAD_LIST, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->getValue(self::LOAD_IN_MAIN_THREAD_LIST, ScopeInterface::SCOPE_STORE);
     }
 
 

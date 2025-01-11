@@ -18,7 +18,6 @@ $configJson = $viewModel->getConfigJson();
         debug,
         debugModes,
         forward,
-        loadScriptsOnMainThread,
         isProxyingEnabled,
         lib
     } = partytownConfig;
@@ -27,16 +26,22 @@ $configJson = $viewModel->getConfigJson();
 
     window.partytown = {
         lib,
-        loadScriptsOnMainThread,
         forward,
         debug,
         ...debugModesObj,
     };
 
+    let loadScriptsOnMainThread;
+    if(partytownConfig?.loadScriptsOnMainThread){
+        loadScriptsOnMainThread = partytownConfig.loadScriptsOnMainThread;
+        window.partytown.loadScriptsOnMainThread = loadScriptsOnMainThread;
+    }
+
+
     if (isProxyingEnabled) {
         window.partytown.resolveUrl = function (url, location, type) {
-            const proxyingRequestDomains = <?= $block->getProxyingRequestDomains() ?? 0 ?> || [];
-            let proxyUrl = "<?= (string) $block->getProxyUrl() ?>";
+            const proxyingRequestDomains = <?= $viewModel->getProxyingRequestDomains() ?? 0 ?> || [];
+            let proxyUrl = "<?= (string) $viewModel->getProxyUrl() ?>";
             if (proxyingRequestDomains.includes(url.hostname)) {
                 proxyUrl = new URL(proxyUrl);
                 proxyUrl.searchParams.append("url", url.href);
