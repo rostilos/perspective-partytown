@@ -1,4 +1,4 @@
-/* Partytown 0.10.2 - MIT builder.io */
+/* Partytown 0.10.3-dev1734732935152 - MIT builder.io */
 (window => {
     const isPromise = v => "object" == typeof v && v && v.then;
     const noop = () => {};
@@ -598,14 +598,15 @@
         };
     })(((accessReq, responseCallback) => mainAccessHandler(worker, accessReq).then(responseCallback))).then((onMessageHandler => {
         if (onMessageHandler) {
-            worker = new Worker(libPath + "partytown-ww-atomics.js?v=0.10.2", {
+            worker = new Worker(libPath + "partytown-ww-atomics.js?v=0.10.3-dev1734732935152", {
                 name: "Partytown 🎉"
             });
             worker.onmessage = ev => {
                 const msg = ev.data;
                 12 === msg[0] ? mainAccessHandler(worker, msg[1]) : onMessageHandler(worker, msg);
             };
-            logMain("Created Partytown web worker (0.10.2)");
+            console.warn("@builder.io/partytown package has changed organization and now is\n@qwik.dev/partytown https://www.npmjs.com/package/@qwik.dev/partytown\nWe recommend using the new package to stay up to date on feature releases and bug fixes.");
+            logMain("Created Partytown web worker (0.10.3-dev1734732935152)");
             worker.onerror = ev => console.error("Web Worker Error", ev);
             mainWindow.addEventListener("pt1", (ev => registerWindow(worker, getAndSetInstanceId(ev.detail.frameElement), ev.detail)));
         }

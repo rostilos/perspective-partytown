@@ -22,23 +22,25 @@ Traditional connection / with Partytown module:
 
 <h2>Installing the module</h2>
 
-<ol>
-  <li>composer config repositories.perspective-magento2-partytown git git@github.com:rostilos/perspective-partytown.git</li>
-  <li>composer require perspective/magento2-partytown dev-master</li>
-  <li>php bin/magento setup:upgrade</li>
-  <li>bin/magento setup:di:compile</li>  
-  <li>php bin/magento setup:static-content:deploy</li>
-  <li>Clear all Cache</li>
-</ol>
+
+<pre>
+composer config repositories.perspective-magento2-partytown git git@github.com:rostilos/perspective-partytown.git
+composer require perspective/magento2-partytown dev-master
+php bin/magento setup:upgrade
+bin/magento setup:di:compile
+php bin/magento setup:static-content:deploy
+php bin/magento cache:clean
+php bin/magento cache:flush
+</pre>
 
 <h2>Updating partytown npm packages </h2>
 <p>The library files provided by the npm package @builder.io/partytown are already added to the module files, but in case you want to update them, it is recommended to do the following :</p>
 
-<ol>
-  <li>cd _magento-root_/vendor/perspective/magento2-partytown</li>
-  <li>npm install ( node v16+ required )</li>
-  <li>npm run partytown</li>
-</ol>
+<pre>
+cd &lt;project-root&gt;/vendor/perspective/magento2-partytown
+npm install ( node v16+ required )
+npm run partytown
+</pre>
 
 <p>Note that if you update the composer package, or reinstall it, you will revert to the existing version in the repository. This is planned to be fixed in future updates</p>
 
@@ -74,3 +76,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Cloudflare Workers can be used as a reverse proxy ( more for testing purposes or for sites with low traffic due to Cloudflare limitations ) proxied with Cloudflare </p>
 
 ![cb2ad081-f2de-4200-8421-938213900f29](https://github.com/rostilos/perspective-partytown/assets/85498741/b661604c-392e-4e0e-a98b-54fb776c7e92)
+
+<h2>Potential drawbacks</h2>
+<ol>
+ <li>The difficulty is in further debugging the dataLayer. Because when using the module, it will not be stored in window context, and many browser extensions will not work correctly</li>
+ <li>Need to configure reverse proxy</li>
+ <li>Modifications of third-party modules for ga4 analytics ( problems with some modules were observed )</li>
+</ol>

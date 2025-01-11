@@ -1,4 +1,4 @@
-/* Partytown 0.10.2 - MIT builder.io */
+/* Partytown 0.10.3-dev1734732935152 - MIT builder.io */
 Object.freeze((obj => {
     const properties = new Set;
     let currentObj = obj;
@@ -68,7 +68,7 @@ self.onfetch = ev => {
     const url = new URL(req.url);
     const pathname = url.pathname;
     if (pathname.endsWith("sw.html")) {
-        ev.respondWith(response('<!DOCTYPE html><html><head><meta charset="utf-8"><script src="./partytown-sandbox-sw.js?v=0.10.2"><\/script></head></html>'));
+        ev.respondWith(response('<!DOCTYPE html><html><head><meta charset="utf-8"><script src="./partytown-sandbox-sw.js?v=0.10.3-dev1734732935152"><\/script></head></html>'));
     } else {
         pathname.endsWith("proxytown") && ev.respondWith(httpRequestFromWebWorker(req));
     }
