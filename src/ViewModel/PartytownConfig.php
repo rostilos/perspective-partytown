@@ -2,35 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Perspective\Partytown\Block;
+namespace Perspective\Partytown\ViewModel;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Perspective\Partytown\Api\Config\ConfigProviderInterface;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Magento\Framework\View\Asset\Repository;
 
-/**
- * Class Partytown
- *
- * @package Perspective\Partytown\Block
- */
-class Config extends Template
+class PartytownConfig implements ArgumentInterface
 {
-    protected ConfigProviderInterface $configProvider;
-
     /**
      *
      * @param ConfigProviderInterface $configProvider
-     * @param Context $context
-     * @param array $data
      */
     public function __construct(
-        ConfigProviderInterface $configProvider,
-        Context                 $context,
-        array                   $data = []
+        private readonly ConfigProviderInterface $configProvider,
+        private readonly Repository $assetRepository
     )
     {
-        $this->configProvider = $configProvider;
-        parent::__construct($context, $data);
     }
 
     /**
@@ -46,7 +36,7 @@ class Config extends Template
      */
     public function getLoadViaMainThreadList(): array
     {
-        return $this->formatStringListToArray($this->configProvider->getLoadViaMainThreadList());
+        return array_map('trim', explode(',', $this->configProvider->getLoadViaMainThreadList()));
     }
 
     /**
@@ -71,7 +61,13 @@ class Config extends Template
      */
     public function getForwardingEventsList(): array
     {
-        return $this->formatStringListToArray($this->configProvider->getForwardingEventsList());
+        return array_map(function ($value) {
+            $value = trim($value);
+            if ($value === 'ttq') {
+                return 'ttq.track, ttq.page, ttq.load';
+            }
+            return $value;
+        }, explode(',', $this->configProvider->getForwardingEventsList()));
     }
 
     /**
@@ -79,7 +75,7 @@ class Config extends Template
      */
     public function getProxyingRequestDomains(): string
     {
-        $result = $this->formatStringListToArray($this->configProvider->getProxyingRequestList());
+        $result = array_map('trim', explode(',', $this->configProvider->getProxyingRequestList()));
         return json_encode($result);
     }
 
@@ -96,7 +92,7 @@ class Config extends Template
      */
     public function getDebugConfigsList(): array
     {
-        return $this->formatStringListToArray($this->configProvider->getDebugConfigsList());
+        return array_map('trim', explode(',', $this->configProvider->getDebugConfigsList()));
     }
 
     /**
@@ -104,7 +100,7 @@ class Config extends Template
      */
     public function getRelativePathToPartytownFolder(): string
     {
-        $libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
+        $libUrl = $this->assetRepository->getUrl('Perspective_Partytown::js/lib');
         return parse_url($libUrl, PHP_URL_PATH) . '/';
     }
 
@@ -122,19 +118,5 @@ class Config extends Template
             'lib' => $this->getRelativePathToPartytownFolder()
         ];
         return json_encode($config);
-    }
-
-    /**
-     * @param string $separator
-     * @param string $string
-     * @return array
-     */
-    private function formatStringListToArray(string $string, string $separator = ','): array
-    {
-        $arrayFromString = $this->configProvider->getLoadViaMainThreadList();
-        if (empty(current($arrayFromString))) {
-            return [];
-        }
-        return array_map('trim', explode($separator, $arrayFromString));
     }
 }

@@ -1,12 +1,15 @@
 <?php
 
-use Perspective\Partytown\Block\Config;
 use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Perspective\Partytown\ViewModel\PartytownConfig;
 
-/** @var Config $block */
 /** @var Escaper $escaper */
+/** @var Template $block */
+/** @var $viewModel PartytownConfig */
 
-$configJson = $block->getConfigJson();
+$viewModel = $block->getViewModel();
+$configJson = $viewModel->getConfigJson();
 ?>
 
 <script>
@@ -32,7 +35,7 @@ $configJson = $block->getConfigJson();
 
     if (isProxyingEnabled) {
         window.partytown.resolveUrl = function (url, location, type) {
-            const proxyingRequestDomains = <?= (string)$block->getProxyingRequestDomains() ?> || [];
+            const proxyingRequestDomains = <?= $block->getProxyingRequestDomains() ?? 0 ?> || [];
             let proxyUrl = "<?= (string) $block->getProxyUrl() ?>";
             if (proxyingRequestDomains.includes(url.hostname)) {
                 proxyUrl = new URL(proxyUrl);
