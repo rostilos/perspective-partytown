@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Perspective\Partytown\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -16,38 +18,34 @@ class ConfigProvider implements ConfigProviderInterface
 
     public function isModuleEnabled(): bool
     {
-        $isEnabled = $this->scopeConfig->getValue(self::PARTYTOWN_IS_ENABLED, ScopeInterface::SCOPE_STORE);
-        return $isEnabled;
+        return (bool)$this->scopeConfig->getValue(self::PARTYTOWN_IS_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getLoadViaMainThreadList(): mixed
+    public function getLoadViaMainThreadList(): ?string
     {
-        $isEnabled = $this->scopeConfig->getValue(self::LOAD_IN_MAIN_THREAD_LIST, ScopeInterface::SCOPE_STORE);
-        return $isEnabled;
+        return $this->scopeConfig->getValue(self::LOAD_IN_MAIN_THREAD_LIST, ScopeInterface::SCOPE_STORE);
     }
 
 
     public function isDebugEnabled(): bool
     {
-        $isEnabled = $this->scopeConfig->getValue(self::DEBUG_IS_ENABLED, ScopeInterface::SCOPE_STORE);
-        return $isEnabled;
+        return (bool)$this->scopeConfig->getValue(self::DEBUG_IS_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getForwardingEventsList(): mixed
+    public function getForwardingEventsList(): string
     {
-        $cookieText = $this->scopeConfig->getValue(self::FORWARDING_EVENTS_LIST, ScopeInterface::SCOPE_STORE);
-        return $cookieText;
+        return (string)$this->scopeConfig->getValue(self::FORWARDING_EVENTS_LIST, ScopeInterface::SCOPE_STORE);
     }
 
     public function isProxyingRequestsEnabled(): bool
     {
-        return $this->scopeConfig->getValue(self::PROXYING_REQUESTS_IS_ENABLED, ScopeInterface::SCOPE_STORE);
+        return (bool)$this->scopeConfig->getValue(self::PROXYING_REQUESTS_IS_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
 
-    public function getProxyingRequestList(): mixed
+    public function getProxyingRequestList(): string
     {
-        return $this->scopeConfig->getValue(self::PROXYING_REQUESTS_LIST, ScopeInterface::SCOPE_STORE);
+        return (string)$this->scopeConfig->getValue(self::PROXYING_REQUESTS_LIST, ScopeInterface::SCOPE_STORE);
     }
 
     public function getProxyUrl(): ?string
@@ -56,9 +54,9 @@ class ConfigProvider implements ConfigProviderInterface
     }
 
 
-    public function getDebugConfigsList(): mixed
+    public function getDebugConfigsList(): string
     {
-        return $this->scopeConfig->getValue(self::DEBUG_LOGGING_LIST, ScopeInterface::SCOPE_STORE);
+        return (string)$this->scopeConfig->getValue(self::DEBUG_LOGGING_LIST, ScopeInterface::SCOPE_STORE);
     }
 
 }

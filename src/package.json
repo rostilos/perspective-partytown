@@ -12,6 +12,6 @@
   },
   "private": true,
   "dependencies": {
-    "@builder.io/partytown": "^0.10.2"
+    "@qwik.dev/partytown": "^0.11.0"
   }
 }

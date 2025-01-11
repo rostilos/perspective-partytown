@@ -29,9 +29,9 @@ interface ConfigProviderInterface
     public function isModuleEnabled(): bool;
 
     /**
-     * @return mixed
+     * @return null|string
      */
-    public function getLoadViaMainThreadList(): mixed;
+    public function getLoadViaMainThreadList(): ?string;
 
     /**
      * @return bool
@@ -40,9 +40,9 @@ interface ConfigProviderInterface
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getForwardingEventsList(): mixed;
+    public function getForwardingEventsList(): string;
 
 
     /**
@@ -52,19 +52,19 @@ interface ConfigProviderInterface
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getProxyingRequestList(): mixed;
+    public function getProxyingRequestList(): string;
 
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getProxyUrl(): ?string;
 
     /**
      * @return mixed
      */
-    public function getDebugConfigsList(): mixed;
+    public function getDebugConfigsList(): string;
 
 }
