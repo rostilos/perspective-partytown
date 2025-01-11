@@ -18,7 +18,7 @@ class ForwardingMultiselect implements ArrayInterface
             ['value' => '_hsq.push', 'label' => __('Hubspot Tracking')],
             ['value' => 'Intercom', 'label' => __('Intercom')],
             ['value' => '_learnq.push', 'label' => __('Klaviyo')],
-            ['value' => 'ttq', 'label' => __('TikTok Pixel')],
+            ['value' => 'ttq.track, ttq.page, ttq.load', 'label' => __('TikTok Pixel')],
             ['value' => 'mixpanel.track', 'label' => __('Mixpanel')]
         ];
     }

@@ -31,7 +31,7 @@ interface ConfigProviderInterface
     /**
      * @return mixed
      */
-    public function getLoadViaMainThreadList(): mixed;
+    public function getLoadViaMainThreadList(): string;
 
     /**
      * @return bool
@@ -42,7 +42,7 @@ interface ConfigProviderInterface
     /**
      * @return mixed
      */
-    public function getForwardingEventsList(): mixed;
+    public function getForwardingEventsList(): string;
 
 
     /**
@@ -54,7 +54,7 @@ interface ConfigProviderInterface
     /**
      * @return mixed
      */
-    public function getProxyingRequestList(): mixed;
+    public function getProxyingRequestList(): string;
 
 
     /**
@@ -65,6 +65,6 @@ interface ConfigProviderInterface
     /**
      * @return mixed
      */
-    public function getDebugConfigsList(): mixed;
+    public function getDebugConfigsList(): string;
 
 }

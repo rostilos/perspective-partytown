@@ -46,14 +46,7 @@ class Config extends Template
      */
     public function getLoadViaMainThreadList(): array
     {
-        $result = [];
-        $sourceList = explode(',', (string)$this->configProvider->getLoadViaMainThreadList());
-        if (!empty(current($sourceList))) {
-            foreach ($sourceList as $source) {
-                $result[] = trim($source);
-            }
-        }
-        return $result;
+        return $this->formatStringListToArray($this->configProvider->getLoadViaMainThreadList());
     }
 
     /**
@@ -78,20 +71,7 @@ class Config extends Template
      */
     public function getForwardingEventsList(): array
     {
-        $result = [];
-        $eventsList = explode(',', (string)$this->configProvider->getForwardingEventsList());
-        if (!empty(current($eventsList))) {
-            foreach ($eventsList as $event) {
-                // TODO: Refactor this
-                // hardcoded value for TikTox pixel forward events
-                if ($event === 'ttq') {
-                    $result[] = 'ttq.track, ttq.page, ttq.load';
-                    continue;
-                }
-                $result[] = trim($event);
-            }
-        }
-        return $result;
+        return $this->formatStringListToArray($this->configProvider->getForwardingEventsList());
     }
 
     /**
@@ -99,13 +79,7 @@ class Config extends Template
      */
     public function getProxyingRequestDomains(): string
     {
-        $result = [];
-        $domainsList = explode(',', (string)$this->configProvider->getProxyingRequestList());
-        if (!empty(current($domainsList))) {
-            foreach ($domainsList as $domain) {
-                $result[] = trim($domain);
-            }
-        }
+        $result = $this->formatStringListToArray($this->configProvider->getProxyingRequestList());
         return json_encode($result);
     }
 
@@ -122,14 +96,7 @@ class Config extends Template
      */
     public function getDebugConfigsList(): array
     {
-        $result = [];
-        $configs = explode(',', (string)$this->configProvider->getDebugConfigsList());
-        if (!empty(current($configs))) {
-            foreach ($configs as $config) {
-                $result[] = trim($config);
-            }
-        }
-        return $result;
+        return $this->formatStringListToArray($this->configProvider->getDebugConfigsList());
     }
 
     /**
@@ -155,5 +122,19 @@ class Config extends Template
             'lib' => $this->getRelativePathToPartytownFolder()
         ];
         return json_encode($config);
+    }
+
+    /**
+     * @param string $separator
+     * @param string $string
+     * @return array
+     */
+    private function formatStringListToArray(string $string, string $separator = ','): array
+    {
+        $arrayFromString = $this->configProvider->getLoadViaMainThreadList();
+        if (empty(current($arrayFromString))) {
+            return [];
+        }
+        return array_map('trim', explode($separator, $arrayFromString));
     }
 }
