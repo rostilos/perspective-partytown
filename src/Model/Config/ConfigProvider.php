@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Perspective\Partytown\Model\Config;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;

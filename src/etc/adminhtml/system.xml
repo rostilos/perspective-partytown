@@ -61,7 +61,7 @@
                 <field id="debug_logging_list" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Log configuration properties</label>
                     <config_path>perspective/settings/debug_logging_list</config_path>
-                    <source_model>Perspective\Partytown\Model\Adminhtml\System\Config\LogConfigMustiselect</source_model>
+                    <source_model>Perspective\Partytown\Model\Adminhtml\System\Config\LogConfigMultiselect</source_model>
                     <validate>validate-select</validate>
                     <can_be_empty>1</can_be_empty>
                     <comment><![CDATA[If you are using Chrome DevTools to see these logs, make sure that the Verbose log level is selected in Console. <br>  <a target="_blank" href="https://partytown.builder.io/debugging" title="Read more">Read more</a>]]></comment>

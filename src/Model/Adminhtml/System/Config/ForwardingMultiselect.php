@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Perspective\Partytown\Model\Adminhtml\System\Config;
 
-use function Perspective\Partytown\Model\Adminhtml\System\Config;
+use Perspective\Partytown\Model\Adminhtml\System\Config;
+use Magento\Framework\Option\ArrayInterface;
 
-class ForwardingMultiselect implements \Magento\Framework\Option\ArrayInterface
+class ForwardingMultiselect implements ArrayInterface
 {
 
     public function toOptionArray(): array

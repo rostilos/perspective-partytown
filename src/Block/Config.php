@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Perspective\Partytown\Block;
 
 use Magento\Framework\View\Element\Template;
@@ -82,7 +84,7 @@ class Config extends Template
             foreach ($eventsList as $event) {
                 // TODO: Refactor this
                 // hardcoded value for TikTox pixel forward events
-                if($event === 'ttq'){
+                if ($event === 'ttq') {
                     $result[] = 'ttq.track, ttq.page, ttq.load';
                     continue;
                 }
@@ -136,16 +138,14 @@ class Config extends Template
     public function getRelativePathToPartytownFolder(): string
     {
         $libUrl = $this->getViewFileUrl('Perspective_Partytown::js/lib');
-        $relativePath = parse_url($libUrl, PHP_URL_PATH) . '/';
-        return $relativePath;
+        return parse_url($libUrl, PHP_URL_PATH) . '/';
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getConfigJson(): ?string
+    public function getConfigJson(): string
     {
-        $config = [];
         $config = [
             'forward' => $this->getForwardingEventsList(),
             'debug' => $this->isDebugEnabled(),
