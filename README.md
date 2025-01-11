@@ -23,7 +23,7 @@ Traditional connection / with Partytown module:
 <h2>Installing the module</h2>
 
 
-<pre>
+```
 composer config repositories.perspective-magento2-partytown git git@github.com:rostilos/perspective-partytown.git
 composer require perspective/magento2-partytown dev-master
 php bin/magento setup:upgrade
@@ -31,16 +31,16 @@ bin/magento setup:di:compile
 php bin/magento setup:static-content:deploy
 php bin/magento cache:clean
 php bin/magento cache:flush
-</pre>
+```
 
 <h2>Updating partytown npm packages </h2>
 <p>The library files provided by the npm package @builder.io/partytown are already added to the module files, but in case you want to update them, it is recommended to do the following :</p>
 
-<pre>
-cd &lt;project-root&gt;/vendor/perspective/magento2-partytown
+```
+cd <project-root>/vendor/perspective/magento2-partytown
 npm install ( node v16+ required )
 npm run partytown
-</pre>
+```
 
 <p>Note that if you update the composer package, or reinstall it, you will revert to the existing version in the repository. This is planned to be fixed in future updates</p>
 
