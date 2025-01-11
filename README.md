@@ -7,6 +7,8 @@ Traditional connection / with Partytown module:
 </p>
 
 ![diff](https://github.com/rostilos/perspective-partytown/assets/85498741/cae5b261-8992-4ef9-9761-61a149b1c5fb)
+![Screenshot_20250111_073736](https://github.com/user-attachments/assets/16f8e67e-685f-4eb2-897e-725f2158a8f4)
+
 
 
 <h2>Requirements: </h2>
