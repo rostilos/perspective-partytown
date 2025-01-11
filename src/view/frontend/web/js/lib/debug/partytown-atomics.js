@@ -1,4 +1,4 @@
-/* Partytown 0.10.3-dev1734732935152 - MIT builder.io */
+/* Partytown 0.11.0 - MIT QwikDev */
 (window => {
     const isPromise = v => "object" == typeof v && v && v.then;
     const noop = () => {};
@@ -66,6 +66,108 @@
     const mainRefs = new Map;
     const winCtxs = {};
     const windowIds = new WeakMap;
+    var WorkerMessageType;
+    !function(WorkerMessageType) {
+        WorkerMessageType[WorkerMessageType.MainDataRequestFromWorker = 0] = "MainDataRequestFromWorker";
+        WorkerMessageType[WorkerMessageType.MainDataResponseToWorker = 1] = "MainDataResponseToWorker";
+        WorkerMessageType[WorkerMessageType.MainInterfacesRequestFromWorker = 2] = "MainInterfacesRequestFromWorker";
+        WorkerMessageType[WorkerMessageType.MainInterfacesResponseToWorker = 3] = "MainInterfacesResponseToWorker";
+        WorkerMessageType[WorkerMessageType.InitializedWebWorker = 4] = "InitializedWebWorker";
+        WorkerMessageType[WorkerMessageType.InitializeEnvironment = 5] = "InitializeEnvironment";
+        WorkerMessageType[WorkerMessageType.InitializedEnvironmentScript = 6] = "InitializedEnvironmentScript";
+        WorkerMessageType[WorkerMessageType.InitializeNextScript = 7] = "InitializeNextScript";
+        WorkerMessageType[WorkerMessageType.InitializedScripts = 8] = "InitializedScripts";
+        WorkerMessageType[WorkerMessageType.RefHandlerCallback = 9] = "RefHandlerCallback";
+        WorkerMessageType[WorkerMessageType.ForwardMainTrigger = 10] = "ForwardMainTrigger";
+        WorkerMessageType[WorkerMessageType.ForwardWorkerAccessRequest = 11] = "ForwardWorkerAccessRequest";
+        WorkerMessageType[WorkerMessageType.AsyncAccessRequest = 12] = "AsyncAccessRequest";
+        WorkerMessageType[WorkerMessageType.LocationUpdate = 13] = "LocationUpdate";
+        WorkerMessageType[WorkerMessageType.DocumentVisibilityState = 14] = "DocumentVisibilityState";
+        WorkerMessageType[WorkerMessageType.CustomElementCallback = 15] = "CustomElementCallback";
+    }(WorkerMessageType || (WorkerMessageType = {}));
+    var LocationUpdateType;
+    !function(LocationUpdateType) {
+        LocationUpdateType[LocationUpdateType.PushState = 0] = "PushState";
+        LocationUpdateType[LocationUpdateType.ReplaceState = 1] = "ReplaceState";
+        LocationUpdateType[LocationUpdateType.PopState = 2] = "PopState";
+        LocationUpdateType[LocationUpdateType.HashChange = 3] = "HashChange";
+    }(LocationUpdateType || (LocationUpdateType = {}));
+    var InterfaceType;
+    !function(InterfaceType) {
+        InterfaceType[InterfaceType.Window = 0] = "Window";
+        InterfaceType[InterfaceType.Element = 1] = "Element";
+        InterfaceType[InterfaceType.AttributeNode = 2] = "AttributeNode";
+        InterfaceType[InterfaceType.TextNode = 3] = "TextNode";
+        InterfaceType[InterfaceType.CDataSectionNode = 4] = "CDataSectionNode";
+        InterfaceType[InterfaceType.Function = 5] = "Function";
+        InterfaceType[InterfaceType.Property = 6] = "Property";
+        InterfaceType[InterfaceType.ProcessingInstructionNode = 7] = "ProcessingInstructionNode";
+        InterfaceType[InterfaceType.CommentNode = 8] = "CommentNode";
+        InterfaceType[InterfaceType.Document = 9] = "Document";
+        InterfaceType[InterfaceType.DocumentTypeNode = 10] = "DocumentTypeNode";
+        InterfaceType[InterfaceType.DocumentFragmentNode = 11] = "DocumentFragmentNode";
+        InterfaceType[InterfaceType.EnvGlobalConstructor = 12] = "EnvGlobalConstructor";
+    }(InterfaceType || (InterfaceType = {}));
+    var WinDocId;
+    !function(WinDocId) {
+        WinDocId.document = "d";
+        WinDocId.documentElement = "e";
+        WinDocId.head = "h";
+        WinDocId.body = "b";
+    }(WinDocId || (WinDocId = {}));
+    var ApplyPathType;
+    !function(ApplyPathType) {
+        ApplyPathType[ApplyPathType.SetValue = 0] = "SetValue";
+        ApplyPathType[ApplyPathType.GlobalConstructor = 1] = "GlobalConstructor";
+    }(ApplyPathType || (ApplyPathType = {}));
+    var SerializedType;
+    !function(SerializedType) {
+        SerializedType[SerializedType.Primitive = 0] = "Primitive";
+        SerializedType[SerializedType.Array = 1] = "Array";
+        SerializedType[SerializedType.Object = 2] = "Object";
+        SerializedType[SerializedType.Instance = 3] = "Instance";
+        SerializedType[SerializedType.Ref = 4] = "Ref";
+        SerializedType[SerializedType.Event = 5] = "Event";
+        SerializedType[SerializedType.Function = 6] = "Function";
+        SerializedType[SerializedType.NodeList = 7] = "NodeList";
+        SerializedType[SerializedType.ArrayBuffer = 8] = "ArrayBuffer";
+        SerializedType[SerializedType.ArrayBufferView = 9] = "ArrayBufferView";
+        SerializedType[SerializedType.Attr = 10] = "Attr";
+        SerializedType[SerializedType.CSSRule = 11] = "CSSRule";
+        SerializedType[SerializedType.CSSRuleList = 12] = "CSSRuleList";
+        SerializedType[SerializedType.CSSStyleDeclaration = 13] = "CSSStyleDeclaration";
+        SerializedType[SerializedType.Error = 14] = "Error";
+    }(SerializedType || (SerializedType = {}));
+    var NodeName;
+    !function(NodeName) {
+        NodeName.Body = "BODY";
+        NodeName.Comment = "#comment";
+        NodeName.Document = "#document";
+        NodeName.DocumentElement = "HTML";
+        NodeName.DocumentTypeNode = "html";
+        NodeName.DocumentFragment = "#document-fragment";
+        NodeName.IFrame = "IFRAME";
+        NodeName.Head = "HEAD";
+        NodeName.Script = "SCRIPT";
+        NodeName.Text = "#text";
+    }(NodeName || (NodeName = {}));
+    var StateProp;
+    !function(StateProp) {
+        StateProp.errorHandlers = "error";
+        StateProp.loadHandlers = "load";
+        StateProp[StateProp.src = 0] = "src";
+        StateProp[StateProp.loadErrorStatus = 1] = "loadErrorStatus";
+        StateProp[StateProp.cssRules = 2] = "cssRules";
+        StateProp[StateProp.innerHTML = 3] = "innerHTML";
+        StateProp[StateProp.url = 4] = "url";
+        StateProp[StateProp.type = 5] = "type";
+    }(StateProp || (StateProp = {}));
+    var CallType;
+    !function(CallType) {
+        CallType[CallType.Blocking = 1] = "Blocking";
+        CallType[CallType.NonBlocking = 2] = "NonBlocking";
+        CallType[CallType.NonBlockingNoSideEffect = 3] = "NonBlockingNoSideEffect";
+    }(CallType || (CallType = {}));
     const getAndSetInstanceId = (instance, instanceId) => {
         if (instance) {
             if (instanceId = windowIds.get(instance)) {
@@ -82,16 +184,16 @@
             }
             doc = win.$window$.document;
             docId = instanceId.split(".").pop();
-            if ("d" === docId) {
+            if (docId === WinDocId.document) {
                 return doc;
             }
-            if ("e" === docId) {
+            if (docId === WinDocId.documentElement) {
                 return doc.documentElement;
             }
-            if ("h" === docId) {
+            if (docId === WinDocId.head) {
                 return doc.head;
             }
-            if ("b" === docId) {
+            if (docId === WinDocId.body) {
                 return doc.body;
             }
         }
@@ -127,16 +229,16 @@
         const Cstr = defineConstructorName(class extends winCtxs[winId].$window$.HTMLElement {}, ceData[0]);
         const ceCallbackMethods = "connectedCallback,disconnectedCallback,attributeChangedCallback,adoptedCallback".split(",");
         ceCallbackMethods.map((callbackMethodName => Cstr.prototype[callbackMethodName] = function(...args) {
-            worker.postMessage([ 15, winId, getAndSetInstanceId(this), callbackMethodName, args ]);
+            worker.postMessage([ WorkerMessageType.CustomElementCallback, winId, getAndSetInstanceId(this), callbackMethodName, args ]);
         }));
         Cstr.observedAttributes = ceData[1];
         return Cstr;
     };
-    const serializeForWorker = ($winId$, value, added, type, cstrName, prevInstanceId) => void 0 !== value && (type = typeof value) ? "string" === type || "number" === type || "boolean" === type || null == value ? [ 0, value ] : "function" === type ? [ 6 ] : (added = added || new Set) && Array.isArray(value) ? added.has(value) ? [ 1, [] ] : added.add(value) && [ 1, value.map((v => serializeForWorker($winId$, v, added))) ] : "object" === type ? serializedValueIsError(value) ? [ 14, {
+    const serializeForWorker = ($winId$, value, added, type, cstrName, prevInstanceId) => void 0 !== value && (type = typeof value) ? "string" === type || "number" === type || "boolean" === type || null == value ? [ SerializedType.Primitive, value ] : "function" === type ? [ SerializedType.Function ] : (added = added || new Set) && Array.isArray(value) ? added.has(value) ? [ SerializedType.Array, [] ] : added.add(value) && [ SerializedType.Array, value.map((v => serializeForWorker($winId$, v, added))) ] : "object" === type ? serializedValueIsError(value) ? [ SerializedType.Error, {
         name: value.name,
         message: value.message,
         stack: value.stack
-    } ] : "" === (cstrName = getConstructorName(value)) ? [ 2, {} ] : "Window" === cstrName ? [ 3, [ $winId$, $winId$ ] ] : "HTMLCollection" === cstrName || "NodeList" === cstrName ? [ 7, Array.from(value).map((v => serializeForWorker($winId$, v, added)[1])) ] : cstrName.endsWith("Event") ? [ 5, serializeObjectForWorker($winId$, value, added) ] : "CSSRuleList" === cstrName ? [ 12, Array.from(value).map(serializeCssRuleForWorker) ] : startsWith(cstrName, "CSS") && cstrName.endsWith("Rule") ? [ 11, serializeCssRuleForWorker(value) ] : "CSSStyleDeclaration" === cstrName ? [ 13, serializeObjectForWorker($winId$, value, added) ] : "Attr" === cstrName ? [ 10, [ value.name, value.value ] ] : value.nodeType ? [ 3, [ $winId$, getAndSetInstanceId(value), getNodeName(value), prevInstanceId ] ] : [ 2, serializeObjectForWorker($winId$, value, added, true, true) ] : void 0 : value;
+    } ] : "" === (cstrName = getConstructorName(value)) ? [ SerializedType.Object, {} ] : "Window" === cstrName ? [ SerializedType.Instance, [ $winId$, $winId$ ] ] : "HTMLCollection" === cstrName || "NodeList" === cstrName ? [ SerializedType.NodeList, Array.from(value).map((v => serializeForWorker($winId$, v, added)[1])) ] : cstrName.endsWith("Event") ? [ SerializedType.Event, serializeObjectForWorker($winId$, value, added) ] : "CSSRuleList" === cstrName ? [ SerializedType.CSSRuleList, Array.from(value).map(serializeCssRuleForWorker) ] : startsWith(cstrName, "CSS") && cstrName.endsWith("Rule") ? [ SerializedType.CSSRule, serializeCssRuleForWorker(value) ] : "CSSStyleDeclaration" === cstrName ? [ SerializedType.CSSStyleDeclaration, serializeObjectForWorker($winId$, value, added) ] : "Attr" === cstrName ? [ SerializedType.Attr, [ value.name, value.value ] ] : value.nodeType ? [ SerializedType.Instance, [ $winId$, getAndSetInstanceId(value), getNodeName(value), prevInstanceId ] ] : [ SerializedType.Object, serializeObjectForWorker($winId$, value, added, true, true) ] : void 0 : value;
     const serializeObjectForWorker = (winId, obj, added, includeFunctions, includeEmptyStrings, serializedObj, propName, propValue) => {
         serializedObj = {};
         if (!added.has(obj)) {
@@ -168,14 +270,14 @@
         if (serializedTransfer) {
             serializedType = serializedTransfer[0];
             serializedValue = serializedTransfer[1];
-            return 0 === serializedType ? serializedValue : 4 === serializedType ? deserializeRefFromWorker(worker, serializedValue) : 1 === serializedType ? serializedValue.map((v => deserializeFromWorker(worker, v))) : 3 === serializedType ? getInstance(serializedValue[0], serializedValue[1]) : 5 === serializedType ? constructEvent(deserializeObjectFromWorker(worker, serializedValue)) : 2 === serializedType ? deserializeObjectFromWorker(worker, serializedValue) : 8 === serializedType ? serializedValue : 9 === serializedType ? new window[serializedTransfer[2]](serializedValue) : void 0;
+            return serializedType === SerializedType.Primitive ? serializedValue : serializedType === SerializedType.Ref ? deserializeRefFromWorker(worker, serializedValue) : serializedType === SerializedType.Array ? serializedValue.map((v => deserializeFromWorker(worker, v))) : serializedType === SerializedType.Instance ? getInstance(serializedValue[0], serializedValue[1]) : serializedType === SerializedType.Event ? constructEvent(deserializeObjectFromWorker(worker, serializedValue)) : serializedType === SerializedType.Object ? deserializeObjectFromWorker(worker, serializedValue) : serializedType === SerializedType.ArrayBuffer ? serializedValue : serializedType === SerializedType.ArrayBufferView ? new window[serializedTransfer[2]](serializedValue) : void 0;
         }
     };
     const deserializeRefFromWorker = (worker, {$winId$: $winId$, $instanceId$: $instanceId$, $refId$: $refId$}, ref) => {
         ref = mainRefs.get($refId$);
         if (!ref) {
             ref = function(...args) {
-                worker.postMessage([ 9, {
+                worker.postMessage([ WorkerMessageType.RefHandlerCallback, {
                     $winId$: $winId$,
                     $instanceId$: $instanceId$,
                     $refId$: $refId$,
@@ -221,7 +323,7 @@
                     };
                     callback();
                 }));
-                if (1 === applyPath[0] && applyPath[1] in winCtxs[winId].$window$) {
+                if (applyPath[0] === ApplyPathType.GlobalConstructor && applyPath[1] in winCtxs[winId].$window$) {
                     setInstanceId(new winCtxs[winId].$window$[applyPath[1]](...deserializeFromWorker(worker, applyPath[2])), task.$instanceId$);
                 } else {
                     instance = getInstance(winId, task.$instanceId$);
@@ -271,7 +373,7 @@
                         }
                         instance = instance[current];
                     } else {
-                        if (0 === next) {
+                        if (next === ApplyPathType.SetValue) {
                             instance[previous] = deserializeFromWorker(worker, current);
                             return;
                         }
@@ -300,7 +402,7 @@
         let forwards = (win.partytown || {}).forward || [];
         let i;
         let mainForwardFn;
-        let forwardCall = ($forward$, args) => worker.postMessage([ 10, {
+        let forwardCall = ($forward$, args) => worker.postMessage([ WorkerMessageType.ForwardMainTrigger, {
             $winId$: $winId$,
             $forward$: $forward$,
             $args$: serializeForWorker($winId$, Array.from(args))
@@ -373,7 +475,7 @@
                 } else {
                     scriptData.$content$ = scriptElm.innerHTML;
                 }
-                worker.postMessage([ 7, scriptData ]);
+                worker.postMessage([ WorkerMessageType.InitializeNextScript, scriptData ]);
             } else {
                 if (!winCtx.$isInitialized$) {
                     winCtx.$isInitialized$ = 1;
@@ -384,7 +486,7 @@
                         logMain(`Executed ${winType} window ${normalizedWinId($winId$)} environment scripts in ${(performance.now() - winCtx.$startTime$).toFixed(1)}ms`);
                     }
                 }
-                worker.postMessage([ 8, $winId$ ]);
+                worker.postMessage([ WorkerMessageType.InitializedScripts, $winId$ ]);
             }
         } else {
             requestAnimationFrame((() => readNextScript(worker, winCtx)));
@@ -402,7 +504,7 @@
                 initialised ? callback() : onInitialisedQueue.push(callback);
             };
             const sendInitEnvData = () => {
-                worker.postMessage([ 5, {
+                worker.postMessage([ WorkerMessageType.InitializeEnvironment, {
                     $winId$: $winId$,
                     $parentWinId$: $parentWinId$,
                     $url$: doc.baseURI,
@@ -418,7 +520,7 @@
             const pushState = history.pushState.bind(history);
             const replaceState = history.replaceState.bind(history);
             const onLocationChange = (type, state, newUrl, oldUrl) => () => {
-                worker.postMessage([ 13, {
+                worker.postMessage([ WorkerMessageType.LocationUpdate, {
                     $winId$: $winId$,
                     type: type,
                     state: state,
@@ -429,22 +531,22 @@
             };
             history.pushState = (state, _, newUrl) => {
                 pushState(state, _, newUrl);
-                onInitialised(onLocationChange(0, state, null == newUrl ? void 0 : newUrl.toString()));
+                onInitialised(onLocationChange(LocationUpdateType.PushState, state, null == newUrl ? void 0 : newUrl.toString()));
             };
             history.replaceState = (state, _, newUrl) => {
                 replaceState(state, _, newUrl);
-                onInitialised(onLocationChange(1, state, null == newUrl ? void 0 : newUrl.toString()));
+                onInitialised(onLocationChange(LocationUpdateType.ReplaceState, state, null == newUrl ? void 0 : newUrl.toString()));
             };
             $window$.addEventListener("popstate", (event => {
-                onInitialised(onLocationChange(2, event.state));
+                onInitialised(onLocationChange(LocationUpdateType.PopState, event.state));
             }));
             $window$.addEventListener("hashchange", (event => {
-                onInitialised(onLocationChange(3, {}, event.newURL, event.oldURL));
+                onInitialised(onLocationChange(LocationUpdateType.HashChange, {}, event.newURL, event.oldURL));
             }));
             $window$.addEventListener("ptupdate", (() => {
                 readNextScript(worker, winCtxs[$winId$]);
             }));
-            doc.addEventListener("visibilitychange", (() => worker.postMessage([ 14, $winId$, doc.visibilityState ])));
+            doc.addEventListener("visibilitychange", (() => worker.postMessage([ WorkerMessageType.DocumentVisibilityState, $winId$, doc.visibilityState ])));
             winCtxs[$winId$] = {
                 $winId$: $winId$,
                 $window$: $window$
@@ -458,11 +560,11 @@
         }
     };
     const onMessageFromWebWorker = (worker, msg, winCtx) => {
-        if (4 === msg[0]) {
+        if (msg[0] === WorkerMessageType.InitializedWebWorker) {
             registerWindow(worker, randomId(), mainWindow);
         } else {
             winCtx = winCtxs[msg[1]];
-            winCtx && (7 === msg[0] ? requestAnimationFrame((() => readNextScript(worker, winCtx))) : 6 === msg[0] && ((worker, winCtx, instanceId, errorMsg, scriptElm) => {
+            winCtx && (msg[0] === WorkerMessageType.InitializeNextScript ? requestAnimationFrame((() => readNextScript(worker, winCtx))) : msg[0] === WorkerMessageType.InitializedEnvironmentScript && ((worker, winCtx, instanceId, errorMsg, scriptElm) => {
                 scriptElm = winCtx.$window$.document.querySelector(`[data-ptid="${instanceId}"]`);
                 if (scriptElm) {
                     errorMsg ? scriptElm.dataset.pterror = errorMsg : scriptElm.type += "-x";
@@ -485,7 +587,7 @@
         const resizeObserver = getGlobalConstructor(mainWindow, "ResizeObserver");
         const perf = mainWindow.performance;
         const screen = mainWindow.screen;
-        const impls = [ [ mainWindow.history ], [ perf ], [ perf.navigation ], [ perf.timing ], [ screen ], [ screen.orientation ], [ mainWindow.visualViewport ], [ intersectionObserver, 12 ], [ mutationObserver, 12 ], [ resizeObserver, 12 ], [ textNode ], [ comment ], [ frag ], [ shadowRoot ], [ elm ], [ elm.attributes ], [ elm.classList ], [ elm.dataset ], [ elm.style ], [ docImpl ], [ docImpl.doctype ] ];
+        const impls = [ [ mainWindow.history ], [ perf ], [ perf.navigation ], [ perf.timing ], [ screen ], [ screen.orientation ], [ mainWindow.visualViewport ], [ intersectionObserver, InterfaceType.EnvGlobalConstructor ], [ mutationObserver, InterfaceType.EnvGlobalConstructor ], [ resizeObserver, InterfaceType.EnvGlobalConstructor ], [ textNode ], [ comment ], [ frag ], [ shadowRoot ], [ elm ], [ elm.attributes ], [ elm.classList ], [ elm.dataset ], [ elm.style ], [ docImpl ], [ docImpl.doctype ] ];
         const initialInterfaces = [ readImplementation("Window", mainWindow), readImplementation("Node", textNode) ];
         const $config$ = function(config) {
             return JSON.stringify(config, ((key, value) => {
@@ -514,7 +616,13 @@
                 tag = r[2];
                 return "S" == interfaceName[0] ? doc.createElementNS("http://www.w3.org/2000/svg", svgConstructorTags[tag] || tag.slice(0, 2).toLowerCase() + tag.slice(2)) : doc.createElement(htmlConstructorTags[tag] || tag);
             }
-        })(docImpl, interfaceName))).filter((elm => elm)).map((elm => [ elm ]));
+        })(docImpl, interfaceName))).filter((elm => {
+            if (!elm) {
+                return false;
+            }
+            const constructorName = getConstructorName(elm);
+            return !("HTMLUnknownElement" === constructorName && "UNKNOWN" !== elm.nodeName.toUpperCase());
+        })).map((elm => [ elm ]));
         return readImplementations(elms, []);
     };
     const readImplementations = (impls, interfaces) => {
@@ -557,12 +665,12 @@
                 value = implementation[memberName];
                 memberType = typeof value;
                 if ("function" === memberType) {
-                    (String(value).includes("[native") || Object.getPrototypeOf(implementation)[memberName]) && interfaceMembers.push([ memberName, 5 ]);
+                    (String(value).includes("[native") || Object.getPrototypeOf(implementation)[memberName]) && interfaceMembers.push([ memberName, InterfaceType.Function ]);
                 } else if ("object" === memberType && null != value) {
                     cstrName = getConstructorName(value);
                     "Object" !== cstrName && "Function" !== cstrName && self[cstrName] && interfaceMembers.push([ memberName, value.nodeType || cstrName ]);
                 } else {
-                    "symbol" !== memberType && (memberName.toUpperCase() === memberName ? interfaceMembers.push([ memberName, 6, value ]) : interfaceMembers.push([ memberName, 6 ]));
+                    "symbol" !== memberType && (memberName.toUpperCase() === memberName ? interfaceMembers.push([ memberName, InterfaceType.Property, value ]) : interfaceMembers.push([ memberName, InterfaceType.Property ]));
                 }
             }
         } catch (e) {
@@ -571,7 +679,7 @@
     };
     const getGlobalConstructor = (mainWindow, cstrName) => void 0 !== mainWindow[cstrName] ? new mainWindow[cstrName](noop) : 0;
     const addGlobalConstructorUsingPrototype = ($interfaces$, mainWindow, cstrName) => {
-        void 0 !== mainWindow[cstrName] && $interfaces$.push([ cstrName, "Object", Object.keys(mainWindow[cstrName].prototype).map((propName => [ propName, 6 ])), 12 ]);
+        void 0 !== mainWindow[cstrName] && $interfaces$.push([ cstrName, "Object", Object.keys(mainWindow[cstrName].prototype).map((propName => [ propName, InterfaceType.Property ])), InterfaceType.EnvGlobalConstructor ]);
     };
     let worker;
     (async receiveMessage => {
@@ -580,12 +688,12 @@
         return (worker, msg) => {
             const msgType = msg[0];
             const accessReq = msg[1];
-            if (0 === msgType) {
+            if (msgType === WorkerMessageType.MainDataRequestFromWorker) {
                 const initData = readMainPlatform();
                 initData.$sharedDataBuffer$ = sharedDataBuffer;
-                worker.postMessage([ 1, initData ]);
+                worker.postMessage([ WorkerMessageType.MainDataResponseToWorker, initData ]);
             } else {
-                2 === msg[0] ? worker.postMessage([ 3, readMainInterfaces() ]) : 11 === msgType ? receiveMessage(accessReq, (accessRsp => {
+                msg[0] === WorkerMessageType.MainInterfacesRequestFromWorker ? worker.postMessage([ WorkerMessageType.MainInterfacesResponseToWorker, readMainInterfaces() ]) : msgType === WorkerMessageType.ForwardWorkerAccessRequest ? receiveMessage(accessReq, (accessRsp => {
                     const stringifiedData = JSON.stringify(accessRsp);
                     const stringifiedDataLength = stringifiedData.length;
                     for (let i = 0; i < stringifiedDataLength; i++) {
@@ -598,15 +706,14 @@
         };
     })(((accessReq, responseCallback) => mainAccessHandler(worker, accessReq).then(responseCallback))).then((onMessageHandler => {
         if (onMessageHandler) {
-            worker = new Worker(libPath + "partytown-ww-atomics.js?v=0.10.3-dev1734732935152", {
+            worker = new Worker(libPath + "partytown-ww-atomics.js?v=0.11.0", {
                 name: "Partytown 🎉"
             });
             worker.onmessage = ev => {
                 const msg = ev.data;
-                12 === msg[0] ? mainAccessHandler(worker, msg[1]) : onMessageHandler(worker, msg);
+                msg[0] === WorkerMessageType.AsyncAccessRequest ? mainAccessHandler(worker, msg[1]) : onMessageHandler(worker, msg);
             };
-            console.warn("@builder.io/partytown package has changed organization and now is\n@qwik.dev/partytown https://www.npmjs.com/package/@qwik.dev/partytown\nWe recommend using the new package to stay up to date on feature releases and bug fixes.");
-            logMain("Created Partytown web worker (0.10.3-dev1734732935152)");
+            logMain("Created Partytown web worker (0.11.0)");
             worker.onerror = ev => console.error("Web Worker Error", ev);
             mainWindow.addEventListener("pt1", (ev => registerWindow(worker, getAndSetInstanceId(ev.detail.frameElement), ev.detail)));
         }

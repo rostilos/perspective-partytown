@@ -66,7 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <h2>For correct work it is recommended to specify url to reverse proxy</h2>
 
-<a href="https://github.com/rostilos/perspective-partytown/blob/2.0.0-alpha/docs/reverse-proxy.md">Example of a self-hosted implementation using nodejs </a>
+<a href="https://github.com/rostilos/perspective-partytown/blob/master/docs/reverse-proxy-nodejs.md">Example of a self-hosted implementation using nodejs </a>
 
 <a href="https://github.com/rostilos/perspective-partytown/blob/master/docs/reverse-proxy-nginx.md">Example of a self-hosted implementation using warden and custom container for revense-proxy ( nginx based ) </a>
 

@@ -1,4 +1,4 @@
-/* Partytown 0.10.3-dev1734732935152 - MIT builder.io */
+/* Partytown 0.11.0 - MIT QwikDev */
 (self => {
     const [getter, setter, callMethod, constructGlobal, definePrototypePropertyDescriptor, randomId, WinIdKey, InstanceIdKey, ApplyPathKey] = self.$bridgeToMedia$;
     delete self.$bridgeToMedia$;
@@ -13,6 +13,108 @@
     const defineCstrName = (cstrName, Cstr) => Object.defineProperty(Cstr, "name", {
         value: cstrName
     });
+    var WorkerMessageType;
+    !function(WorkerMessageType) {
+        WorkerMessageType[WorkerMessageType.MainDataRequestFromWorker = 0] = "MainDataRequestFromWorker";
+        WorkerMessageType[WorkerMessageType.MainDataResponseToWorker = 1] = "MainDataResponseToWorker";
+        WorkerMessageType[WorkerMessageType.MainInterfacesRequestFromWorker = 2] = "MainInterfacesRequestFromWorker";
+        WorkerMessageType[WorkerMessageType.MainInterfacesResponseToWorker = 3] = "MainInterfacesResponseToWorker";
+        WorkerMessageType[WorkerMessageType.InitializedWebWorker = 4] = "InitializedWebWorker";
+        WorkerMessageType[WorkerMessageType.InitializeEnvironment = 5] = "InitializeEnvironment";
+        WorkerMessageType[WorkerMessageType.InitializedEnvironmentScript = 6] = "InitializedEnvironmentScript";
+        WorkerMessageType[WorkerMessageType.InitializeNextScript = 7] = "InitializeNextScript";
+        WorkerMessageType[WorkerMessageType.InitializedScripts = 8] = "InitializedScripts";
+        WorkerMessageType[WorkerMessageType.RefHandlerCallback = 9] = "RefHandlerCallback";
+        WorkerMessageType[WorkerMessageType.ForwardMainTrigger = 10] = "ForwardMainTrigger";
+        WorkerMessageType[WorkerMessageType.ForwardWorkerAccessRequest = 11] = "ForwardWorkerAccessRequest";
+        WorkerMessageType[WorkerMessageType.AsyncAccessRequest = 12] = "AsyncAccessRequest";
+        WorkerMessageType[WorkerMessageType.LocationUpdate = 13] = "LocationUpdate";
+        WorkerMessageType[WorkerMessageType.DocumentVisibilityState = 14] = "DocumentVisibilityState";
+        WorkerMessageType[WorkerMessageType.CustomElementCallback = 15] = "CustomElementCallback";
+    }(WorkerMessageType || (WorkerMessageType = {}));
+    var LocationUpdateType;
+    !function(LocationUpdateType) {
+        LocationUpdateType[LocationUpdateType.PushState = 0] = "PushState";
+        LocationUpdateType[LocationUpdateType.ReplaceState = 1] = "ReplaceState";
+        LocationUpdateType[LocationUpdateType.PopState = 2] = "PopState";
+        LocationUpdateType[LocationUpdateType.HashChange = 3] = "HashChange";
+    }(LocationUpdateType || (LocationUpdateType = {}));
+    var InterfaceType;
+    !function(InterfaceType) {
+        InterfaceType[InterfaceType.Window = 0] = "Window";
+        InterfaceType[InterfaceType.Element = 1] = "Element";
+        InterfaceType[InterfaceType.AttributeNode = 2] = "AttributeNode";
+        InterfaceType[InterfaceType.TextNode = 3] = "TextNode";
+        InterfaceType[InterfaceType.CDataSectionNode = 4] = "CDataSectionNode";
+        InterfaceType[InterfaceType.Function = 5] = "Function";
+        InterfaceType[InterfaceType.Property = 6] = "Property";
+        InterfaceType[InterfaceType.ProcessingInstructionNode = 7] = "ProcessingInstructionNode";
+        InterfaceType[InterfaceType.CommentNode = 8] = "CommentNode";
+        InterfaceType[InterfaceType.Document = 9] = "Document";
+        InterfaceType[InterfaceType.DocumentTypeNode = 10] = "DocumentTypeNode";
+        InterfaceType[InterfaceType.DocumentFragmentNode = 11] = "DocumentFragmentNode";
+        InterfaceType[InterfaceType.EnvGlobalConstructor = 12] = "EnvGlobalConstructor";
+    }(InterfaceType || (InterfaceType = {}));
+    var WinDocId;
+    !function(WinDocId) {
+        WinDocId.document = "d";
+        WinDocId.documentElement = "e";
+        WinDocId.head = "h";
+        WinDocId.body = "b";
+    }(WinDocId || (WinDocId = {}));
+    var ApplyPathType;
+    !function(ApplyPathType) {
+        ApplyPathType[ApplyPathType.SetValue = 0] = "SetValue";
+        ApplyPathType[ApplyPathType.GlobalConstructor = 1] = "GlobalConstructor";
+    }(ApplyPathType || (ApplyPathType = {}));
+    var SerializedType;
+    !function(SerializedType) {
+        SerializedType[SerializedType.Primitive = 0] = "Primitive";
+        SerializedType[SerializedType.Array = 1] = "Array";
+        SerializedType[SerializedType.Object = 2] = "Object";
+        SerializedType[SerializedType.Instance = 3] = "Instance";
+        SerializedType[SerializedType.Ref = 4] = "Ref";
+        SerializedType[SerializedType.Event = 5] = "Event";
+        SerializedType[SerializedType.Function = 6] = "Function";
+        SerializedType[SerializedType.NodeList = 7] = "NodeList";
+        SerializedType[SerializedType.ArrayBuffer = 8] = "ArrayBuffer";
+        SerializedType[SerializedType.ArrayBufferView = 9] = "ArrayBufferView";
+        SerializedType[SerializedType.Attr = 10] = "Attr";
+        SerializedType[SerializedType.CSSRule = 11] = "CSSRule";
+        SerializedType[SerializedType.CSSRuleList = 12] = "CSSRuleList";
+        SerializedType[SerializedType.CSSStyleDeclaration = 13] = "CSSStyleDeclaration";
+        SerializedType[SerializedType.Error = 14] = "Error";
+    }(SerializedType || (SerializedType = {}));
+    var NodeName;
+    !function(NodeName) {
+        NodeName.Body = "BODY";
+        NodeName.Comment = "#comment";
+        NodeName.Document = "#document";
+        NodeName.DocumentElement = "HTML";
+        NodeName.DocumentTypeNode = "html";
+        NodeName.DocumentFragment = "#document-fragment";
+        NodeName.IFrame = "IFRAME";
+        NodeName.Head = "HEAD";
+        NodeName.Script = "SCRIPT";
+        NodeName.Text = "#text";
+    }(NodeName || (NodeName = {}));
+    var StateProp;
+    !function(StateProp) {
+        StateProp.errorHandlers = "error";
+        StateProp.loadHandlers = "load";
+        StateProp[StateProp.src = 0] = "src";
+        StateProp[StateProp.loadErrorStatus = 1] = "loadErrorStatus";
+        StateProp[StateProp.cssRules = 2] = "cssRules";
+        StateProp[StateProp.innerHTML = 3] = "innerHTML";
+        StateProp[StateProp.url = 4] = "url";
+        StateProp[StateProp.type = 5] = "type";
+    }(StateProp || (StateProp = {}));
+    var CallType;
+    !function(CallType) {
+        CallType[CallType.Blocking = 1] = "Blocking";
+        CallType[CallType.NonBlocking = 2] = "NonBlocking";
+        CallType[CallType.NonBlockingNoSideEffect = 3] = "NonBlockingNoSideEffect";
+    }(CallType || (CallType = {}));
     const initCanvas = (WorkerBase, win) => {
         const HTMLCanvasDescriptorMap = {
             getContext: {
@@ -24,12 +126,12 @@
         };
         const WorkerCanvasGradient = defineCstr(win, "CanvasGradient", class extends WorkerBase {
             addColorStop(...args) {
-                callMethod(this, [ "addColorStop" ], args, 2);
+                callMethod(this, [ "addColorStop" ], args, CallType.NonBlocking);
             }
         });
         const WorkerCanvasPattern = defineCstr(win, "CanvasPattern", class extends WorkerBase {
             setTransform(...args) {
-                callMethod(this, [ "setTransform" ], args, 2);
+                callMethod(this, [ "setTransform" ], args, CallType.NonBlocking);
             }
         });
         const createContext2D = (canvasInstance, contextType, contextAttributes) => {
@@ -40,13 +142,13 @@
                 [InstanceIdKey]: ctxInstanceId,
                 [ApplyPathKey]: []
             };
-            const ctx = callMethod(canvasInstance, [ "getContext" ], [ contextType, contextAttributes ], 1, ctxInstanceId);
+            const ctx = callMethod(canvasInstance, [ "getContext" ], [ contextType, contextAttributes ], CallType.Blocking, ctxInstanceId);
             const ctx2dGetterMethods = "getContextAttributes,getImageData,getLineDash,getTransform,isPointInPath,isPointInStroke,measureText".split(",");
             const CanvasRenderingContext2D = {
                 get: (target, propName) => "string" == typeof propName && propName in ctx ? "function" == typeof ctx[propName] ? (...args) => {
                     if (propName.startsWith("create")) {
                         const instanceId = randomId();
-                        callMethod(ctxInstance, [ propName ], args, 2, instanceId);
+                        callMethod(ctxInstance, [ propName ], args, CallType.NonBlocking, instanceId);
                         if ("createImageData" === propName || "createPattern" === propName) {
                             (api => {
                                 console.warn(`${api} not implemented`);
@@ -57,7 +159,7 @@
                         }
                         return new WorkerCanvasGradient(winId, instanceId);
                     }
-                    const methodCallType = ctx2dGetterMethods.includes(propName) ? 1 : 2;
+                    const methodCallType = ctx2dGetterMethods.includes(propName) ? CallType.Blocking : CallType.NonBlocking;
                     return callMethod(ctxInstance, [ propName ], args, methodCallType);
                 } : ctx[propName] : target[propName],
                 set(target, propName, value) {
@@ -80,7 +182,7 @@
                 [InstanceIdKey]: ctxInstanceId,
                 [ApplyPathKey]: []
             };
-            const ctx = callMethod(canvasInstance, [ "getContext" ], [ contextType, contextAttributes ], 1, ctxInstanceId);
+            const ctx = callMethod(canvasInstance, [ "getContext" ], [ contextType, contextAttributes ], CallType.Blocking, ctxInstanceId);
             const WebGLRenderingContextHandler = {
                 get: (target, propName) => "string" == typeof propName ? "function" != typeof ctx[propName] ? ctx[propName] : (...args) => callMethod(ctxInstance, [ propName ], args, getWebGlMethodCallType(propName)) : target[propName],
                 set(target, propName, value) {
@@ -96,7 +198,7 @@
             return new Proxy(ctx, WebGLRenderingContextHandler);
         };
         const ctxWebGLGetterMethods = "checkFramebufferStatus,makeXRCompatible".split(",");
-        const getWebGlMethodCallType = methodName => methodName.startsWith("create") || methodName.startsWith("get") || methodName.startsWith("is") || ctxWebGLGetterMethods.includes(methodName) ? 1 : 2;
+        const getWebGlMethodCallType = methodName => methodName.startsWith("create") || methodName.startsWith("get") || methodName.startsWith("is") || ctxWebGLGetterMethods.includes(methodName) ? CallType.Blocking : CallType.NonBlocking;
         defineCstr(win, "CanvasGradient", WorkerCanvasGradient);
         defineCstr(win, "CanvasPattern", WorkerCanvasPattern);
         definePrototypePropertyDescriptor(win.HTMLCanvasElement, HTMLCanvasDescriptorMap);
@@ -139,14 +241,14 @@
                 const instanceId = mediaElm[InstanceIdKey];
                 const instance = {
                     addEventListener(...args) {
-                        callMethod(mediaElm, [ "audioTracks", "addEventListener" ], args, 3);
+                        callMethod(mediaElm, [ "audioTracks", "addEventListener" ], args, CallType.NonBlockingNoSideEffect);
                     },
                     getTrackById: (...args) => callMethod(mediaElm, [ "audioTracks", "getTrackById" ], args),
                     get length() {
                         return getter(mediaElm, [ "audioTracks", "length" ]);
                     },
                     removeEventListener(...args) {
-                        callMethod(mediaElm, [ "audioTracks", "removeEventListener" ], args, 3);
+                        callMethod(mediaElm, [ "audioTracks", "removeEventListener" ], args, CallType.NonBlockingNoSideEffect);
                     }
                 };
                 return new Proxy(instance, {
@@ -160,10 +262,10 @@
                 this[MediaSourceKey] = mediaSource;
             }
             addEventListener(...args) {
-                callMethod(this[MediaSourceKey], [ "sourceBuffers", "addEventListener" ], args, 3);
+                callMethod(this[MediaSourceKey], [ "sourceBuffers", "addEventListener" ], args, CallType.NonBlockingNoSideEffect);
             }
             removeEventListener(...args) {
-                callMethod(this[MediaSourceKey], [ "sourceBuffers", "removeEventListener" ], args, 3);
+                callMethod(this[MediaSourceKey], [ "sourceBuffers", "removeEventListener" ], args, CallType.NonBlockingNoSideEffect);
             }
         });
         const WorkerSourceBuffer = defineCstr(win, "SourceBuffer", (_b = class extends WorkerEventTargetProxy {
@@ -174,11 +276,11 @@
             }
             abort() {
                 const sbIndex = getSourceBufferIndex(this);
-                callMethod(this, [ sbIndex, "appendWindowStart" ], EMPTY_ARRAY, 1);
+                callMethod(this, [ sbIndex, "appendWindowStart" ], EMPTY_ARRAY, CallType.Blocking);
             }
             addEventListener(...args) {
                 const sbIndex = getSourceBufferIndex(this);
-                callMethod(this, [ sbIndex, "addEventListener" ], args, 3);
+                callMethod(this, [ sbIndex, "addEventListener" ], args, CallType.NonBlockingNoSideEffect);
             }
             appendBuffer(buf) {
                 this[SourceBufferTasksKey].push([ "appendBuffer", [ buf ], buf ]);
@@ -208,7 +310,7 @@
             }
             changeType(mimeType) {
                 const sbIndex = getSourceBufferIndex(this);
-                callMethod(this, [ sbIndex, "changeType" ], [ mimeType ], 2);
+                callMethod(this, [ sbIndex, "changeType" ], [ mimeType ], CallType.NonBlocking);
             }
             get mode() {
                 const sbIndex = getSourceBufferIndex(this);
@@ -224,7 +326,7 @@
             }
             removeEventListener(...args) {
                 const sbIndex = getSourceBufferIndex(this);
-                callMethod(this, [ sbIndex, "removeEventListener" ], args, 3);
+                callMethod(this, [ sbIndex, "removeEventListener" ], args, CallType.NonBlockingNoSideEffect);
             }
             get timestampOffset() {
                 const sbIndex = getSourceBufferIndex(this);
@@ -264,7 +366,7 @@
                     const task = sourceBuffer[SourceBufferTasksKey].shift();
                     if (task) {
                         const sbIndex = getSourceBufferIndex(sourceBuffer);
-                        callMethod(sourceBuffer, [ sbIndex, task[0] ], task[1], 3, void 0, task[2]);
+                        callMethod(sourceBuffer, [ sbIndex, task[0] ], task[1], CallType.NonBlockingNoSideEffect, void 0, task[2]);
                     }
                 }
                 setTimeout((() => drainSourceBufferQueue(sourceBuffer)), 50);
@@ -313,7 +415,7 @@
                 return sourceBuffer;
             }
             clearLiveSeekableRange() {
-                callMethod(this, [ "clearLiveSeekableRange" ], EMPTY_ARRAY, 2);
+                callMethod(this, [ "clearLiveSeekableRange" ], EMPTY_ARRAY, CallType.NonBlocking);
             }
             get duration() {
                 return getter(this, [ "duration" ]);
@@ -322,7 +424,7 @@
                 setter(this, [ "duration" ], value);
             }
             endOfStream(endOfStreamError) {
-                callMethod(this, [ "endOfStream" ], [ endOfStreamError ], 3);
+                callMethod(this, [ "endOfStream" ], [ endOfStreamError ], CallType.NonBlockingNoSideEffect);
             }
             get readyState() {
                 return getter(this, [ "readyState" ]);
@@ -331,11 +433,11 @@
                 const index = getSourceBufferIndex(sourceBuffer);
                 if (index > -1) {
                     this[SourceBuffersKey].splice(index, 1);
-                    callMethod(this, [ "removeSourceBuffer" ], [ index ], 1);
+                    callMethod(this, [ "removeSourceBuffer" ], [ index ], CallType.Blocking);
                 }
             }
             setLiveSeekableRange(start, end) {
-                callMethod(this, [ "setLiveSeekableRange" ], [ start, end ], 2);
+                callMethod(this, [ "setLiveSeekableRange" ], [ start, end ], CallType.NonBlocking);
             }
             get sourceBuffers() {
                 return this[SourceBuffersKey];
